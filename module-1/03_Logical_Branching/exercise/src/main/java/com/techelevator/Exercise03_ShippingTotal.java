@@ -22,6 +22,14 @@ public class Exercise03_ShippingTotal {
     calculateShippingTotal(45) ➔ 23.75
      */
     public double calculateShippingTotal(int weightPounds) {
+        if (weightPounds <= 40) {
+            return weightPounds * UP_TO_40_LB_RATE;
+        } else if (weightPounds > 40) {
+            int overForty = weightPounds - 40;
+            int underForty = weightPounds - overForty;
+            double initialCost = underForty * UP_TO_40_LB_RATE;
+            return initialCost + (overForty * OVER_40_LB_RATE);
+        }
         return 0;
     }
 
@@ -38,6 +46,21 @@ public class Exercise03_ShippingTotal {
     calculateShippingTotal(45, true) ➔ 21.375
      */
     public double calculateShippingTotal(int weightPounds, boolean hasDiscount) {
+        if (weightPounds <= 40 && !hasDiscount) {
+            return weightPounds * UP_TO_40_LB_RATE;
+        } else if (weightPounds > 40 && !hasDiscount) {
+            int overForty = weightPounds - 40;
+            int underForty = weightPounds - overForty;
+            double initialCost = underForty * UP_TO_40_LB_RATE;
+            return initialCost + (overForty * OVER_40_LB_RATE);
+        } else if (weightPounds <= 40 && hasDiscount) {
+            return (weightPounds * UP_TO_40_LB_RATE) * .9;
+        } else if (weightPounds > 40 && hasDiscount) {
+            int overForty = weightPounds - 40;
+            int underForty = weightPounds - overForty;
+            double initialCost = underForty * UP_TO_40_LB_RATE;
+            return (initialCost + (overForty * OVER_40_LB_RATE)) * .9;
+        }
         return 0;
     }
 
@@ -53,6 +76,30 @@ public class Exercise03_ShippingTotal {
     calculateShippingTotal(45, 0.2) ➔ 19.0
      */
     public double calculateShippingTotal(int weightPounds, double discountPercentage) {
+            if(discountPercentage > 0) {
+                if (weightPounds <= 40) {
+                    return weightPounds * UP_TO_40_LB_RATE*(1-discountPercentage);
+                } else if (weightPounds > 40) {
+                    int overForty = weightPounds - 40;
+                    int underForty = weightPounds - overForty;
+                    double initialCost = underForty * UP_TO_40_LB_RATE;
+                    return (initialCost + (overForty * OVER_40_LB_RATE))*(1-discountPercentage);
+                }
+            }
+            else{
+                if (weightPounds <= 40) {
+                    return weightPounds * UP_TO_40_LB_RATE;
+                } else if (weightPounds > 40) {
+                    int overForty = weightPounds - 40;
+                    int underForty = weightPounds - overForty;
+                    double initialCost = underForty * UP_TO_40_LB_RATE;
+                    return initialCost + (overForty * OVER_40_LB_RATE);
+                }
+            }
         return 0;
     }
 }
+
+
+
+

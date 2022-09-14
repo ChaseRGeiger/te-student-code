@@ -366,6 +366,9 @@ public class Exercises {
         tiny glass jars. If each jar is to contain six cookies, how many
         cookies will not be placed in a jar?
         */
+		int totalGingerbreadCookies = 47;
+		int jarMaxCookieOccupancy = 6;
+		int leftOutCookies = totalGingerbreadCookies % jarMaxCookieOccupancy;
 
 
 
@@ -374,6 +377,9 @@ public class Exercises {
         neighbors. If each neighbor received an equal number of croissants,
         how many will be left with Marian?
         */
+		int totalCroissants = 59;
+		int neighborAmt = 8;
+		int croissantsLeftover = totalCroissants % neighborAmt;
 
 
         /* Exercise 42
@@ -381,6 +387,9 @@ public class Exercises {
         place 12 cookies on a tray at a time, how many trays will she need to
         prepare 276 oatmeal cookies at a time?
         */
+		int cookiesPerTray = 12;
+		int totalCookieGoal = 276;
+		int amtOfTraysNeeded = totalCookieGoal / cookiesPerTray;
 
 
         /* Exercise 43
@@ -388,6 +397,9 @@ public class Exercises {
         bite-sized pretzels. If one serving is equal to 12 pretzels, how many
         servings of bite-sized pretzels was Marian able to prepare?
         */
+		int totalPretzels = 480;
+		int pretzelServingAmt = 12;
+		int totalPretzelServings = totalPretzels / pretzelServingAmt;
 
 
         /* Exercise 44
@@ -395,6 +407,9 @@ public class Exercises {
         orphanage. If two lemon cupcakes were left at home, how many
         boxes with 3 lemon cupcakes each were given away?
         */
+		int lemonCupcakes = 51;
+		int cupcakesPerBox = 3;
+		int totalCupcakeBoxes = lemonCupcakes / cupcakesPerBox;
 
 
         /* Exercise 45
@@ -402,6 +417,9 @@ public class Exercises {
         were served equally to 12 people, how many carrot sticks were left
         uneaten?
         */
+		int carrotSticks = 74;
+		int peopleGivenCarrots = 12;
+		int uneatenCarrots = carrotSticks % peopleGivenCarrots;
 
 
         /* Exercise 46
@@ -409,6 +427,9 @@ public class Exercises {
         them on the shelves in their bedroom. If every shelf can carry a
         maximum of 7 teddy bears, how many shelves will be filled?
         */
+		int totalTeddyBears = 98;
+		int maxShelfOccupancy = 7;
+		int totalShelvesInUse = totalTeddyBears / maxShelfOccupancy;
 
 
         /* Exercise 47
@@ -416,6 +437,9 @@ public class Exercises {
         them in an album. If an album can contain 20 pictures, how many
         albums will she need if there are 480 pictures?
         */
+		int picturesPerAlbum = 20;
+		int totalFamilyPictures = 480;
+		int totalAlbumsNeeded = totalFamilyPictures / picturesPerAlbum;
 
 
         /* Exercise 48
@@ -424,6 +448,10 @@ public class Exercises {
         cards, how many boxes were filled and how many cards are there in
         the unfilled box?
         */
+		int totalTradingCards = 94;
+		int cardsPerBox = 8;
+		int totalCardBoxesUsed = totalTradingCards / cardsPerBox;
+		int cardsInUnfilledBox = totalTradingCards % cardsPerBox;
 
 
         /* Exercise 49
@@ -431,12 +459,18 @@ public class Exercises {
         210 books to be distributed equally on the 10 shelves he repaired,
         how many books will each shelf contain?
         */
+		int repairedShelves = 10;
+		int totalBooksForRepairedShelves = 210;
+		int booksPerRepairedShelf = totalBooksForRepairedShelves / repairedShelves;
 
 
         /* Exercise 50
         50. Cristina baked 17 croissants. If she planned to serve this equally to
         her seven guests, how many will each have?
         */
+		int cristinaCroissantAmt = 17;
+		int cristinaGuestAmt = 7;
+		double cristinaCroissantPerGuest = (double)cristinaCroissantAmt / cristinaGuestAmt;
 
 
 	    /* Exercise 51
@@ -445,6 +479,12 @@ public class Exercises {
 	    Hint: Calculate the rate at which each painter can complete a room (rooms / hour), combine those rates, 
 	    and then divide the total number of rooms to be painted by the combined rate.
 	    */
+		double billPaintRate = 1/2.15;
+		double jillPaintRate = 1/1.9;
+		double combinedRate = billPaintRate + jillPaintRate;
+		double completionTime = 5 / combinedRate;
+
+
      
 
 	    /* Exercise 52
@@ -454,12 +494,19 @@ public class Exercises {
 		with a period. Use "Grace", "Hopper, and "B" for the first name, last name, and middle initial.
 		Example: "John", "Smith, "D" —> "Smith, John D."
 	    */
+		String firstName = "Grace";
+		String lastName = "Hopper";
+		char middleInitial ='B';
+		String fullName = lastName + ", " + firstName + " " + middleInitial + ".";
 
 
 	    /* Exercise 53
 	    53. The distance between New York and Chicago is 800 miles, and the train has already travelled 537 miles.
 	    What percentage of the trip as a whole number has been completed?
 	    */
+		double distance = 800.0;
+		double distanceAlreadyTraveled = 537.0;
+		int percentOfTripCompleted = (int)(distanceAlreadyTraveled / distance) * 100;
 
 	}
 

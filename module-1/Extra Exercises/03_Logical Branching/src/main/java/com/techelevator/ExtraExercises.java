@@ -10,6 +10,12 @@ public class ExtraExercises {
 	 sleepIn(false, true) → true
 	 */
 	public boolean sleepIn(boolean weekday, boolean vacation) {
+		if (weekday == false) {
+			return true;
+		}
+		if (vacation == true) {
+			return true;
+		}
 		return false;
 	}
 
@@ -22,6 +28,13 @@ public class ExtraExercises {
 	 monkeyTrouble(true, false) → false
 	 */
 	public boolean monkeyTrouble(boolean aSmile, boolean bSmile) {
+
+		if (aSmile && bSmile) {
+			return true;
+		}
+		if (!aSmile && !bSmile) {
+			return true;
+		}
 		return false;
 	}
 
@@ -32,7 +45,7 @@ public class ExtraExercises {
 	 sumDouble(2, 2) → 8
 	 */
 	public int sumDouble(int a, int b) {
-		return 0;
+		return a == b ? (a + b) * 2 : a + b;
 	}
 
 	/*
@@ -57,8 +70,16 @@ public class ExtraExercises {
 	 parrotTrouble(false, 6) → false
 	 */
 	public boolean parrotTrouble(boolean talking, int hour) {
+
+		if (talking == false) {
+			return false;
+		} else if (hour < 7 || hour > 20) {
+			return true;
+		}
 		return false;
 	}
+
+
 
 	/*
 	 6. Given 2 ints, a and b, return true if one if them is 10 or if their sum is 10.
