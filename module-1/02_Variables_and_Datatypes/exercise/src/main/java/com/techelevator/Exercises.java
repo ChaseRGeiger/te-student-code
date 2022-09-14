@@ -366,7 +366,7 @@ public class Exercises {
         tiny glass jars. If each jar is to contain six cookies, how many
         cookies will not be placed in a jar?
         */
-		
+
 
 
         /* Exercise 41
