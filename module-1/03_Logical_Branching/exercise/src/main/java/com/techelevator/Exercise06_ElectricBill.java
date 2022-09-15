@@ -24,6 +24,17 @@ public class Exercise06_ElectricBill {
     calculateElectricBill(110) ➔ 22.5
      */
     public double calculateElectricBill(double unitsUsed) {
+        if(unitsUsed <= BASIC_SERVICE_LIMIT){
+           return unitsUsed * BASIC_SERVICE_RATE;
+        }
+        else if(unitsUsed > BASIC_SERVICE_LIMIT){
+            double overServiceLimit = unitsUsed - BASIC_SERVICE_LIMIT;
+            double underServiceLimit = unitsUsed - overServiceLimit;
+            double initialCost = underServiceLimit * BASIC_SERVICE_RATE;
+            double excessCost = overServiceLimit * EXCESS_SERVICE_RATE;
+            double totalCost = initialCost + excessCost;
+            return totalCost;
+        }
         return 0;
     }
 
@@ -40,6 +51,29 @@ public class Exercise06_ElectricBill {
     calculateElectricBill(110, true) ➔ 21.375
      */
     public double calculateElectricBill(double unitsUsed, boolean hasRenewableEnergy) {
+        if(unitsUsed <= BASIC_SERVICE_LIMIT && hasRenewableEnergy){
+            double totalCost = unitsUsed * BASIC_SERVICE_RATE;
+            return totalCost - (totalCost * RENEWABLE_ENERGY_DISCOUNT);
+        }
+        else if(unitsUsed <= BASIC_SERVICE_LIMIT){
+            return unitsUsed * BASIC_SERVICE_RATE;
+        }
+        else if(unitsUsed > BASIC_SERVICE_LIMIT && hasRenewableEnergy){
+            double overServiceLimit = unitsUsed - BASIC_SERVICE_LIMIT;
+            double underServiceLimit = unitsUsed - overServiceLimit;
+            double initialCost = underServiceLimit * BASIC_SERVICE_RATE;
+            double excessCost = overServiceLimit * EXCESS_SERVICE_RATE;
+            double totalCost = initialCost + excessCost;
+            return totalCost - (totalCost * RENEWABLE_ENERGY_DISCOUNT);
+        }
+        else if(unitsUsed > BASIC_SERVICE_LIMIT){
+            double overServiceLimit = unitsUsed - BASIC_SERVICE_LIMIT;
+            double underServiceLimit = unitsUsed - overServiceLimit;
+            double initialCost = underServiceLimit * BASIC_SERVICE_RATE;
+            double excessCost = overServiceLimit * EXCESS_SERVICE_RATE;
+            double totalCost = initialCost + excessCost;
+            return totalCost;
+        }
         return 0;
     }
 
@@ -66,6 +100,36 @@ public class Exercise06_ElectricBill {
     calculateElectricBill(110, 120) ➔ -2.0
      */
     public double calculateElectricBill(double unitsUsed, double unitsReturned) {
-        return 0;
+       double netUsage = unitsUsed - unitsReturned;
+       if(unitsReturned > unitsUsed){
+           return netUsage * BASIC_SERVICE_RATE;
+       }
+       else if(unitsReturned <= 0) {
+           if (unitsUsed <= BASIC_SERVICE_LIMIT) {
+               return unitsUsed * BASIC_SERVICE_RATE;
+           } else if (unitsUsed > BASIC_SERVICE_LIMIT) {
+               double overServiceLimit = unitsUsed - BASIC_SERVICE_LIMIT;
+               double underServiceLimit = unitsUsed - overServiceLimit;
+               double initialCost = underServiceLimit * BASIC_SERVICE_RATE;
+               double excessCost = overServiceLimit * EXCESS_SERVICE_RATE;
+               double totalCost = initialCost + excessCost;
+               return totalCost;
+           }
+
+       }
+       else if(netUsage <=BASIC_SERVICE_LIMIT){
+           double initialCost = netUsage * BASIC_SERVICE_RATE;
+           return initialCost-(initialCost * RENEWABLE_ENERGY_DISCOUNT);
+       }
+       else{
+           double overServiceLimit = netUsage - BASIC_SERVICE_LIMIT;
+           double underServiceLimit = netUsage - overServiceLimit;
+           double initialCost = underServiceLimit * BASIC_SERVICE_RATE;
+           double excessCost = overServiceLimit * EXCESS_SERVICE_RATE;
+           double totalCost = initialCost + excessCost;
+           return totalCost - (totalCost * RENEWABLE_ENERGY_DISCOUNT);
+       }
+       return 0;
+
     }
 }

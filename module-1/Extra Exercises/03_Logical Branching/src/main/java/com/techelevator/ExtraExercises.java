@@ -10,6 +10,7 @@ public class ExtraExercises {
 	 sleepIn(false, true) → true
 	 */
 	public boolean sleepIn(boolean weekday, boolean vacation) {
+<<<<<<< HEAD
 		if (weekday == false) {
 			return true;
 		}
@@ -17,6 +18,11 @@ public class ExtraExercises {
 			return true;
 		}
 		return false;
+=======
+		// Sleep In if a weekend
+		// Sleep in if on vacation
+		return !weekday || vacation;
+>>>>>>> 3db372b470cc10c6edda480ac8038ad655d15ec4
 	}
 
 	/*
@@ -28,24 +34,61 @@ public class ExtraExercises {
 	 monkeyTrouble(true, false) → false
 	 */
 	public boolean monkeyTrouble(boolean aSmile, boolean bSmile) {
+<<<<<<< HEAD
 
 		if (aSmile && bSmile) {
 			return true;
 		}
 		if (!aSmile && !bSmile) {
+=======
+		if (aSmile == true && bSmile == true) {
+			return true;
+		}
+		if (aSmile == false && bSmile == false)  {
+>>>>>>> 3db372b470cc10c6edda480ac8038ad655d15ec4
 			return true;
 		}
 		return false;
+
+		//return ((aSmile && bSmile) || (!aSmile && !bSmile)) ? true : false;
+
+//		return ((aSmile && bSmile) || (!aSmile && !bSmile));
+
+//		if (aSmile && bSmile) {
+//			return true;
+//		} else if (!aSmile && !bSmile)  {
+//			return true;
+//		} else {
+//			return false;
+//		}
+
+//		return !(aSmile ^ bSmile);
+
+//		return aSmile == bSmile;
 	}
 
 	/*
-	 3. Given two int values, return their sum. Unless the two values are the same, then return double their sum.
+	 3. Given two int values, return their sum.
+	 Unless the two values are the same, then return double their sum.
 	 sumDouble(1, 2) → 3
 	 sumDouble(3, 2) → 5
 	 sumDouble(2, 2) → 8
 	 */
 	public int sumDouble(int a, int b) {
+<<<<<<< HEAD
 		return a == b ? (a + b) * 2 : a + b;
+=======
+
+		// Return sum of a + b is a is not equal to b
+		// return (a + b) * 2 when a is equal to b
+//		return a == b ? 2 * (a + b) : a + b;
+
+		if (a == b) {
+			return 2 * (a + b);
+		} else {
+			return a + b;
+		}
+>>>>>>> 3db372b470cc10c6edda480ac8038ad655d15ec4
 	}
 
 	/*

@@ -18,6 +18,9 @@ public class Exercise01_TestGrading {
     gradeTestPassFail(45) ➔ false
      */
     public boolean gradeTestPassFail(int score) {
+        if (score >= 70) {
+            return true;
+        }
         return false;
     }
 
@@ -37,6 +40,13 @@ public class Exercise01_TestGrading {
     gradeTestNumeric(10) ➔ 0
      */
     public int gradeTestNumeric(int score) {
+        if (score >= 90) {
+            return 3;
+        } else if (score >= 50) {
+            return 2;
+        } else if (score >= 25) {
+            return 1;
+        }
         return 0;
     }
 
