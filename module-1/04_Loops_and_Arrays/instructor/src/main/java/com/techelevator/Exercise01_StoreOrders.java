@@ -1,5 +1,7 @@
 package com.techelevator;
 
+import java.util.Locale;
+
 public class Exercise01_StoreOrders {
 
     /*
@@ -94,6 +96,7 @@ public class Exercise01_StoreOrders {
     getCheesePizzaRevenue([11, 21]) → 0
      */
     public int getCheesePizzaRevenue(int[] orders) {
+
 
         int totalCheesePizzaRevenue = 0;
 
