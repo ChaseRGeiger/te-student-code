@@ -4,10 +4,26 @@ public class Lecture {
 
 	public static void main(String[] args) {
 
+		int x = 10;
+		int y = 10;
+		x = 30;
+
+		int[] nums = { 10, 20, 30, 40 };
+		int[] nums2 = nums;
+		nums[3] = 43;
+		nums2 = new int[5];
+		int[] nums3 = new int[5];
 
 		System.out.println("************************************");
 		System.out.println("******    CREATING OBJECTS    ******");
 		System.out.println("************************************");
+
+		Cake vanillaCake = new Cake("Buttercream", true);
+		Cake chocolateCake = new Cake("Chocolate", true);
+		Cake strawberryCake = new Cake("Strawberry", false);
+
+		vanillaCake.setHasSprinkles(false);
+		strawberryCake.setIcingType("Whipped");
 
 
 
@@ -21,8 +37,15 @@ public class Lecture {
 		 * is not the case for most classes */
 
 		/* create an new instance of String using a literal */
+		String name = "John";
 
+		// create an instance of a string using the String class
+		String newString = new String("John");
 		
+
+		// Can initialize a string with a char array
+		char[] word = new char[] {'A', 'w', 'e','s','o','m','e'};
+		String fromCharArray = new String(word);
 
 
 		System.out.println();
@@ -64,6 +87,32 @@ public class Lecture {
 		System.out.println("*******************************");
 		System.out.println();
 
+		String bootcampName = "Tech Elevator";
+
+		System.out.println("Strings can show their length " + bootcampName.length() );
+
+		System.out.println("Can get a character at an index: " + bootcampName.charAt(5) );
+
+		for (int i = 0; i < bootcampName.length(); i++) {
+			System.out.println( bootcampName.charAt(i) );
+		}
+
+		String bootcampUppercase = bootcampName.toUpperCase();
+
+		bootcampUppercase = bootcampUppercase.toLowerCase();
+
+		String middlePart = bootcampName.substring(5, 8);
+		String elevator = bootcampName.substring(5);
+		
+
+		int indexOfE = bootcampName.indexOf("Ele");
+
+		boolean startswithAbc = bootcampName.startsWith("abc");
+		boolean startswithTech = bootcampName.startsWith("Tech");
+
+		boolean hasEleInIt = bootcampName.contains("Ele");
+
+		String replacedEwithZ = bootcampName.replace("e", "z");
 
 		/* Other commonly used methods:
 		 *
@@ -77,6 +126,12 @@ public class Lecture {
 		 * toUpperCase
 		 * trim
 		 */
+
+		String valueOfDouble = String.valueOf(3.14);
+
+		String countDown = String.join(" --> ", "Five", "Four", "Three", "2", "1");
+
+		System.out.println(countDown);
 
 	}
 }
