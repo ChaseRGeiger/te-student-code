@@ -44,7 +44,16 @@ public class Exercises {
 	 makeOutWord("[[]]", "word") → "[[word]]"
 	 */
 	public String makeOutWord(String out, String word) {
-		return null;
+		String newString = "";
+
+		// Get the first half of out String
+		String firstHalf = out.substring(0, 2);
+		// Get the second half of out String
+		String secondHalf = out.substring(2);
+		// Create a new String firstHalf + word + secondHalf
+		newString = firstHalf + word + secondHalf;
+
+		return newString;
 	}
 
 	/*
@@ -315,7 +324,18 @@ public class Exercises {
 	 altPairs("CodingHorror") → "Congrr"
 	 */
 	public String altPairs(String str) {
-		return null;
+
+		String newString = "";
+		// Loop and skip some each iteration of 4
+		// get the substring at each index pair
+		// concatenate the pairs together
+		for (int i = 0; i < str.length(); i += 4) {
+			newString += str.charAt(i);
+			if (i + 1 < str.length()) {
+				newString += str.charAt(i + 1);
+			}
+		}
+		return newString;
 	}
 
 	/*
