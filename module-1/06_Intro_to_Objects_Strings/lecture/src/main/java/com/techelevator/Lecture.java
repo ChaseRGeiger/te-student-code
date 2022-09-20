@@ -9,6 +9,13 @@ public class Lecture {
 		System.out.println("******    CREATING OBJECTS    ******");
 		System.out.println("************************************");
 
+		Cake vanillaCake = new Cake("Buttercream", true);
+		Cake chocolateCake = new Cake("Chocolate", true);
+		Cake strawberryCake = new Cake("Strawberry", true);
+
+		vanillaCake.setHasSprinkles(false);
+		strawberryCake.setIcingType("Whipped");
+
 
 
 		System.out.println("************************************");

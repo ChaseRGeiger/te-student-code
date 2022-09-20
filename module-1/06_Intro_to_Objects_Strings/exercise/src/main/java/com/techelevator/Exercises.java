@@ -9,7 +9,8 @@ public class Exercises {
 	 helloName("X") → "Hello X!"
 	 */
 	public String helloName(String name) {
-		return null;
+
+		return "Hello " + name + "!";
 	}
 
 	/*
@@ -20,7 +21,8 @@ public class Exercises {
 	 makeAbba("What", "Up") → "WhatUpUpWhat"
 	 */
 	public String makeAbba(String a, String b) {
-		return null;
+
+		return a + b + b + a;
 	}
 
 	/*
@@ -32,7 +34,8 @@ public class Exercises {
 	 makeTags("cite", "Yay") → "<cite>Yay</cite>"
 	 */
 	public String makeTags(String tag, String word) {
-		return null;
+
+		return "<" + tag + ">" + word + "</" + tag + ">";
 	}
 
 	/*
@@ -44,7 +47,12 @@ public class Exercises {
 	 makeOutWord("[[]]", "word") → "[[word]]"
 	 */
 	public String makeOutWord(String out, String word) {
-		return null;
+		String firstParameter = out;
+		int firstParamLength = firstParameter.length();
+		int halfFirstParam = firstParamLength / 2;
+		String firstHalf = firstParameter.substring(0, halfFirstParam);
+		String secondHalf = firstParameter.substring(halfFirstParam);
+		return firstHalf + word + secondHalf;
 	}
 
 	/*
@@ -55,7 +63,10 @@ public class Exercises {
 	 extraEnd("Hi") → "HiHiHi"
 	 */
 	public String extraEnd(String str) {
-		return null;
+
+		String lastTwoChars = str.substring(str.length() - 2);
+		return lastTwoChars + lastTwoChars + lastTwoChars;
+
 	}
 
 	/*
@@ -67,7 +78,18 @@ public class Exercises {
 	 firstTwo("ab") → "ab"
 	 */
 	public String firstTwo(String str) {
-		return null;
+		if(str.length() < 2 && str.length() > 1){
+			return str.substring(0, str.length() - 1);
+		}
+		else if(str.length() <= 1){
+			return str.substring(0) + "";
+		}
+		else{
+
+			return str.substring(0, 2);
+
+		}
+
 	}
 
 	/*
@@ -77,7 +99,12 @@ public class Exercises {
 	 firstHalf("abcdef") → "abc"
 	 */
 	public String firstHalf(String str) {
-		return null;
+
+		int strLength = str.length();
+		int halfOfStr = strLength / 2;
+		String firstHalfOfStr = str.substring(0, halfOfStr);
+
+		return firstHalfOfStr;
 	}
 
 	/*
@@ -88,7 +115,9 @@ public class Exercises {
 	 withoutEnd("coding") → "odin"
 	 */
 	public String withoutEnd(String str) {
-		return null;
+
+		return str.substring(1, str.length() - 1);
+
 	}
 
 	/*
@@ -315,7 +344,17 @@ public class Exercises {
 	 altPairs("CodingHorror") → "Congrr"
 	 */
 	public String altPairs(String str) {
-		return null;
+		String newString = "";
+
+		for(int i = 0; i < str.length(); i += 4){
+
+			newString += str.charAt(i);
+			if(i + 1 < str.length()){
+				newString += str.charAt(i + 1);
+			}
+
+		}
+		return newString;
 	}
 
 	/*
