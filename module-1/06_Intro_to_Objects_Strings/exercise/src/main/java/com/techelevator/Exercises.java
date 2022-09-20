@@ -129,7 +129,14 @@ public class Exercises {
 	 comboString("aaa", "b") → "baaab"
 	 */
 	public String comboString(String a, String b) {
-		return null;
+		if(a.length() > b.length()){
+
+			return b + a + b;
+
+		}
+		else{
+			return a + b + a;
+		}
 	}
 
 	/*
@@ -140,7 +147,9 @@ public class Exercises {
 	 nonStart("shotl", "java") → "hotlava"
 	 */
 	public String nonStart(String a, String b) {
-		return null;
+		a = a.substring(1);
+		b = b.substring(1);
+		return a + b;
 	}
 
 	/*
@@ -151,7 +160,11 @@ public class Exercises {
 	 left2("Hi") → "Hi"
 	 */
 	public String left2(String str) {
-		return null;
+
+		String firstTwo = str.substring(0,2);
+		str = str.substring(2);
+
+		return str + firstTwo;
 	}
 
 	/*
@@ -162,7 +175,11 @@ public class Exercises {
 	 right2("Hi") → "Hi"
 	 */
 	public String right2(String str) {
-		return null;
+
+		String lastTwo = str.substring(str.length() - 2);
+		str = str.substring(0,str.length() - 2);
+
+		return lastTwo + str;
 	}
 
 	/*
@@ -173,7 +190,18 @@ public class Exercises {
 	 theEnd("oh", true) → "o"
 	 */
 	public String theEnd(String str, boolean front) {
-		return null;
+
+		if(front){
+			char firstChar = str.charAt(0);
+			String firstCharAsStr = Character.toString(firstChar);
+			return firstCharAsStr;
+
+		}
+		else {
+			char lastChar = str.charAt(str.length() - 1);
+			String lastCharAsStr = Character.toString(lastChar);
+			return lastCharAsStr;
+		}
 	}
 
 	/*
@@ -184,7 +212,19 @@ public class Exercises {
 	 withoutEnd2("ab") → ""
 	 */
 	public String withoutEnd2(String str) {
-		return null;
+
+		if(str.length() < 2){
+
+			return "";
+
+		}
+		else{
+
+			return str.substring(1, str.length() - 1);
+
+		}
+
+
 	}
 
 	/*
@@ -205,7 +245,13 @@ public class Exercises {
 	 endsLy("oddy") → false
 	 */
 	public boolean endsLy(String str) {
-		return false;
+
+		if(str.substring(str.length() - 2, str.length()) == ("ly")){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 	/*
