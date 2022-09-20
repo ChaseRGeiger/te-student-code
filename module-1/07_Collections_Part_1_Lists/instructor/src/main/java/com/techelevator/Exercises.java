@@ -1,6 +1,7 @@
 package com.techelevator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Exercises {
@@ -37,7 +38,21 @@ public class Exercises {
 	 no4LetterWords( {"Jack", "Jill", "Jane", "John", "Jim"} )  ->  ["Jim"]
 	 */
 	public List<String> no4LetterWords(String[] stringArray) {
-		return null;
+		List<String> wordsWithout4Letters = new ArrayList<String>();
+
+		/*
+			Loop through the array
+				check the length of the string
+				if equal to 4 skip it
+				else add to the list
+		 */
+		for (String word : stringArray) {
+			if (word.length() != 4) {
+				wordsWithout4Letters.add( word );
+			}
+		}
+
+		return wordsWithout4Letters;
 	}
 
 	/*
@@ -57,7 +72,23 @@ public class Exercises {
 	 findLargest( [34070, 1380, 81238, 7782, 234, 64362, 627] ) -> 81238
 	 */
 	public Integer findLargest(List<Integer> integerList) {
-		return null;
+
+		int max = 0;
+		for (int i : integerList) {
+			if (i > max) {
+				max = i;
+			}
+		}
+		return max;
+
+//		Collections.sort(integerList);
+//		return integerList.get( integerList.size()  - 1);
+
+//		Collections.sort(integerList);
+//		Collections.reverse(integerList);
+//		return integerList.get(0);
+
+		//return Collections.max(integerList);
 	}
 
 	/*
@@ -94,7 +125,34 @@ public class Exercises {
 	HINT: To convert an Integer x to a String, you can use x.toString() in your code. For example, if x = 1, then x.toString() returns "1."
 	 */
 	public List<String> fizzBuzzList(Integer[] integerArray) {
-		return null;
+
+		List<String> fizzBuzzList = new ArrayList<String>();
+
+		/*
+			for each loop through integerArray
+				check if multiple of 3
+					if true add Fizz to fizzBuzzList
+				check if multiple of 5
+					if true add Buzz to fizzBuzzList
+				check if multiple of 3 and 5
+				    if true add FizzBuzz to fizzBuzzList
+			    if all conditions false add the number to fizzBuzzList as String
+		 */
+		for (Integer num : integerArray) {
+
+			if (num % 3 == 0 && num % 5 == 0) {
+				fizzBuzzList.add("FizzBuzz");
+			} else if ( num % 3 == 0) {
+				fizzBuzzList.add("Fizz");
+			} else if (num % 5 == 0) {
+				fizzBuzzList.add("Buzz");
+			} else {
+				fizzBuzzList.add( num.toString() );
+			}
+
+		}
+
+		return fizzBuzzList;
 	}
 
 	/*
