@@ -262,7 +262,9 @@ public class Exercises {
 	 nTwice("Chocolate", 1) → "Ce"
 	 */
 	public String nTwice(String str, int n) {
-		return null;
+		String twice = str.substring(n, str.length() - n);
+
+		return str.substring(0, 8);
 	}
 
 	/*
@@ -274,7 +276,14 @@ public class Exercises {
 	 twoChar("java", 3) → "ja"
 	 */
 	public String twoChar(String str, int n) {
-		return null;
+		if(n > str.length()){
+			return str.substring(0, 2);
+		}
+		else{
+			return str.substring(n, n + 2);
+		}
+
+
 	}
 
 	/*
@@ -297,6 +306,21 @@ public class Exercises {
 	 hasBad("xxbadxx") → false
 	 */
 	public boolean hasBad(String str) {
+		if(str.length() <= 3 && !(str.substring(0, 2).equals("bad"))){
+			return false;
+		}
+		else if(str.length() <= 3 && str.substring(0, 3).equals("bad")){
+			return true;
+		}
+		else if(str.substring(0,3).equals("bad"))
+		{
+			return true;
+		}
+		else if(str.substring(1,4).equals("bad"))
+		{
+			return true;
+		}
+
 		return false;
 	}
 
@@ -411,6 +435,13 @@ public class Exercises {
 	 stringYak("yak123ya") → "123ya"
 	 */
 	public String stringYak(String str) {
+
+		if(str.contains("yak")){
+
+
+
+		}
+
 		return null;
 	}
 
