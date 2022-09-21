@@ -80,8 +80,8 @@ public class Exercises {
 			halfToDouble.add(count);
 		}
 		for(int i = 0; i < halfToDouble.size(); i++){
-			double division = halfToDouble.get(i);
-			halfToDouble.set(i, (i/2.0));
+			double division = halfToDouble.get(i) / 2;
+			halfToDouble.set(i, division);
 		}
 
 
@@ -139,7 +139,7 @@ public class Exercises {
 		if(firstInstance < secondInstance){
 			return true;
 		}
-		
+
 
 		return false;
 	}

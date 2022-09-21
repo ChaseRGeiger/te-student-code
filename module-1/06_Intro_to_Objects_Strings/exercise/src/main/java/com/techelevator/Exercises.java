@@ -235,7 +235,11 @@ public class Exercises {
 	 middleTwo("Practice") → "ct"
 	 */
 	public String middleTwo(String str) {
-		return null;
+
+		int indexOfFirstChar = (str. length()-1)/2;
+		int indexOfSecondChar = str. length()/2+1;
+
+		return str.substring(indexOfFirstChar, indexOfSecondChar);
 	}
 
 	/*
@@ -246,7 +250,7 @@ public class Exercises {
 	 */
 	public boolean endsLy(String str) {
 
-		if(str.substring(str.length() - 2, str.length()) == ("ly")){
+		if(str.length() >= 2 && str.substring(str.length() - 2).equals("ly")){
 			return true;
 		}
 		else{
@@ -262,9 +266,10 @@ public class Exercises {
 	 nTwice("Chocolate", 1) → "Ce"
 	 */
 	public String nTwice(String str, int n) {
-		String twice = str.substring(n, str.length() - n);
+		String firstPortion = str.substring(0, n);
+		String secondPortion = str.substring(str.length() - n);
 
-		return str.substring(0, 8);
+		return firstPortion + secondPortion;
 	}
 
 	/*
@@ -306,11 +311,11 @@ public class Exercises {
 	 hasBad("xxbadxx") → false
 	 */
 	public boolean hasBad(String str) {
-		if(str.length() <= 3 && !(str.substring(0, 2).equals("bad"))){
-			return false;
-		}
-		else if(str.length() <= 3 && str.substring(0, 3).equals("bad")){
+		if(str.length() <= 3 && str.substring(0).equals("bad")){
 			return true;
+		}
+		else if(str.length() <= 3 ){
+			return false;
 		}
 		else if(str.substring(0,3).equals("bad"))
 		{
@@ -331,7 +336,14 @@ public class Exercises {
 	 stringTimes("Hi", 1) → "Hi"
 	 */
 	public String stringTimes(String str, int n) {
-		return null;
+		String[] strAmt = new String[n + 1];
+		String copies = "";
+
+		for(int i = 0; i < strAmt.length-1; i++){
+			strAmt[i] = str;
+			copies += strAmt[i];
+		}
+		return copies;
 	}
 
 	/*
@@ -342,7 +354,50 @@ public class Exercises {
 	 frontTimes("Abc", 3) → "AbcAbcAbc"
 	 */
 	public String frontTimes(String str, int n) {
-		return null;
+
+
+		String[] strAmt = new String[n + 1];
+		String copies = "";
+
+		if(str.length() >= 3){
+			String first = Character.toString(str.charAt(0));
+			String second = Character.toString(str.charAt(1));
+			String third = Character.toString(str.charAt(2));
+
+			for(int i = 0; i < strAmt.length-1; i++){
+				strAmt[i] = first + second + third;
+				copies += strAmt[i];
+			}
+			return copies;
+
+		}
+		else if(str.length() == 2){
+			String first = Character.toString(str.charAt(0));
+			String second = Character.toString(str.charAt(1));
+
+
+			for(int i = 0; i < strAmt.length-1; i++){
+				strAmt[i] = first + second;
+				copies += strAmt[i];
+			}
+			return copies;
+
+		}
+		else if(str.length() == 1){
+			String first = Character.toString(str.charAt(0));
+
+
+			for(int i = 0; i < strAmt.length-1; i++){
+				strAmt[i] = first;
+				copies += strAmt[i];
+			}
+			return copies;
+
+		}
+		else{
+			return "";
+		}
+
 	}
 
 	/*
@@ -352,7 +407,11 @@ public class Exercises {
 	 countXX("xxxx") →
 	 */
 	public int countXX(String str) {
-		return 0;
+		int count = 0;
+		if(str.contains("xx")){
+
+		}
+		return count;
 	}
 
 	/*
@@ -362,7 +421,14 @@ public class Exercises {
 	 doubleX("xxxxx") → true
 	 */
 	public boolean doubleX(String str) {
-		return false;
+		int firstX = str.indexOf("x");
+		int lastX = str.lastIndexOf("x");
+		if(firstX + 1 == lastX){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 	/*
