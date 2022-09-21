@@ -34,6 +34,9 @@ public class Exercises {
 	 *
 	 */
 	public String animalGroupName(String animalName) {
+
+//		animalGroupName("lion", "Pride");
+//		animalGroupName("crow", "Murder");
 		return null;
 	}
 
@@ -74,6 +77,11 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> robPeterToPayPaul(Map<String, Integer> peterPaul) {
+
+		// Do any calculation once and store the result then use it
+		// int halfOfPetersMoney = petersMoney / 2;
+		// newAmountForPeter = petersMoney - halfOfPetersMoney
+		// newAmountForPaul = paulsMoney + halfOfPetersMoney
 		return null;
 	}
 
