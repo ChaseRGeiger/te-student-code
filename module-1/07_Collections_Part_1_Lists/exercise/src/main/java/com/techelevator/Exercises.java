@@ -188,27 +188,7 @@ public class Exercises {
 	public List<Integer> interleaveLists(List<Integer> listOne, List<Integer> listTwo) {
 		List<Integer> interLeave = new ArrayList<Integer>();
 		int smallerSize = 0;
-		if(listOne.size() < listTwo.size()){
-			smallerSize = listOne.size();
-			for(int i = 0; i < smallerSize; i++){
-				interLeave.add(listOne.get(i));
-				interLeave.add(listTwo.get(i+1));
-			}
-		}
-		else if(listTwo.size() < listOne.size()){
-			smallerSize = listTwo.size();
-			for(int i = 0; i < smallerSize; i++){
-				interLeave.add(listTwo.get(i));
-				interLeave.add(listOne.get(i+1));
-			}
-		}
-		else{
-			smallerSize = listOne.size();
-			for(int i = 0; i <= smallerSize; i++){
-				interLeave.add(listOne.get(i));
-				interLeave.add(listTwo.get(i+1));
-			}
-		}
+		
 
 
 		return interLeave;
