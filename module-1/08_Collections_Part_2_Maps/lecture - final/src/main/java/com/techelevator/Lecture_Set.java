@@ -28,7 +28,7 @@ public class Lecture_Set {
          */
         Set<Integer> setOfNumbers = new HashSet<Integer>();
         //Set<Integer> setOfNumbers = new LinkedHashSet<Integer>();
-        //Set<Integer> setOfNumbers = new TreeSet<Integer>();
+//        Set<Integer> setOfNumbers = new TreeSet<Integer>();
 
         // Elements are added to the Set with add()
         setOfNumbers.add(1);
