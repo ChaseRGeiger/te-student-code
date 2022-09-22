@@ -187,8 +187,10 @@ public class Exercises {
 	 */
 	public List<Integer> interleaveLists(List<Integer> listOne, List<Integer> listTwo) {
 		List<Integer> interLeave = new ArrayList<Integer>();
-		int smallerSize = 0;
+		int position = 1;
+
 		
+
 
 
 		return interLeave;
