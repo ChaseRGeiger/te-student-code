@@ -459,7 +459,15 @@ public class Exercises {
 	 last2("axxxaaxx") → 2
 	 */
 	public int last2(String str) {
-		return 0;
+
+		String end2 = str.substring(str.length() - 2);
+		String restOfStr = str.substring(0, str.length() - 2);
+		int count = 0;
+		if(restOfStr.contains(end2)){
+			count = restOfStr.compareTo(end2);
+		}
+
+		return count;
 	}
 
 	/*

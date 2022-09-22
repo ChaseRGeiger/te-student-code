@@ -333,6 +333,11 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> last2Revisited(String[] words) {
+
+		Map<String, Integer> lastTwo = new HashMap<String, Integer>();
+
+
+
 		return null;
 	}
 
