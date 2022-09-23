@@ -307,9 +307,24 @@ public class Exercises {
 	public Map<String, Integer> consolidateInventory(Map<String, Integer> mainWarehouse,
 			Map<String, Integer> remoteWarehouse) {
 
-
 		Map<String, Integer> consolidatedInventory = new HashMap<String, Integer>();
-		consolidatedInventory.putAll(mainWarehouse);
+
+		for (String key: remoteWarehouse.keySet()) {
+			int check = remoteWarehouse.get(key);
+			int check2 = mainWarehouse.get(key);
+			if(check == check2){
+				consolidatedInventory.put(key, check + check2);
+
+			}
+
+
+
+
+		}
+
+
+
+
 
 
 
