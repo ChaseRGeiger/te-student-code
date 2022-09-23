@@ -32,6 +32,24 @@ public class App {
         thirdBus.addGas(12);
 
         System.out.println("Remaining Gas: " + thirdBus.getGallonsOfGas());
+
+        int milesRemaining =  Bus.getDistanceRemaining(50, 27);
+
+        Bus busOne = new Bus("BusOne");
+        Bus busTwo = new Bus("BusOne");
+
+
+
+        if (busOne.equals(busTwo)) {
+            System.out.println("The same values!");
+        }
+
+        System.out.println( busOne.toString() );
+
+        // print() automatically calls toString()
+        // on any reference type
+        System.out.println( ourBus );
+
     }
 
 }
