@@ -106,4 +106,31 @@ public class Bus {
         return name.toUpperCase();
     }
 
+    public static int getDistanceRemaining(int gallonsOfGas, int mpg) {
+        return gallonsOfGas * mpg;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        Bus other = (Bus) obj;
+        if (this.routeName.equals(other.getRouteName()) &&
+         this.gallonsOfGas == other.getGallonsOfGas() &&
+        this.getRemainingSeats() == other.getRemainingSeats()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Bus {" +
+                "routeName=" + routeName +
+                ", passengers=" + passengers +
+                ", gallonsOfGas=" + gallonsOfGas +
+                ", isDoorOpen=" + isDoorOpen + "}";
+    }
+
 }
