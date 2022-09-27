@@ -1,6 +1,6 @@
 package com.techelevator.printer;
 
-public class StringReverse {
+public class StringReverse implements Printable {
 
     private String stringToReverse;
 
@@ -12,5 +12,8 @@ public class StringReverse {
         String reversed = new StringBuilder(stringToReverse).reverse().toString();
 
         System.out.println(reversed);
+    }
+    public void print(){
+        showReversedString();
     }
 }
