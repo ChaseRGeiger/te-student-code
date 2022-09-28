@@ -3,7 +3,7 @@ package com.techelevator.printer;
 import java.time.LocalDate;
 
 
-public class Product {
+public class Product implements Printable {
 
     private static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
@@ -127,6 +127,10 @@ public class Product {
         System.out.printf(ANSI_YELLOW_BACKGROUND + ANSI_BLACK + " Total Cost: $%2.2f%n" + ANSI_RESET,
                 (this.price + getShippingCost()));
 
+    }
+
+    public void print() {
+        displayProductDetails();
     }
 
 }

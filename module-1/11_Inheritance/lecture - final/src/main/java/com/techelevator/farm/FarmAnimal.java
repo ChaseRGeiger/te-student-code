@@ -21,4 +21,8 @@ public class FarmAnimal {
     public void setSound(String sound) {
         this.sound = sound;
     }
+
+    public void showSound() {
+        System.out.println( getSound() );
+    }
 }

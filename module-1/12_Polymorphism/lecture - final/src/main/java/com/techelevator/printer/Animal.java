@@ -1,6 +1,6 @@
 package com.techelevator.printer;
 
-public class Animal {
+public class Animal implements Printable {
 
     private String type;
     private String sound;
@@ -20,5 +20,9 @@ public class Animal {
 
     public void displayWhatTheAnimalSays() {
         System.out.println("The " + type.toUpperCase() + " says " + sound.toUpperCase() + "!!");
+    }
+
+    public void print() {
+        displayWhatTheAnimalSays();
     }
 }

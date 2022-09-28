@@ -9,6 +9,10 @@ public class Application {
 
         Chicken chicken = new Chicken();
         FarmAnimal anotherChicken = new Chicken();
+        FarmAnimal genericFarmAnimal = new FarmAnimal("", "");
+        anotherChicken.getSound();
+        anotherChicken.showSound();
+
 
         Chicken anotherChickenAsChicken = (Chicken) anotherChicken;
 
