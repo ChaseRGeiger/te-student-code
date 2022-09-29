@@ -14,4 +14,13 @@ public class SleepIn {
       return sleepIn;
     }
 
+
+    /*
+           Weekday      Vacation    return
+           True         True        ture
+           false        false       true
+           true         false       false
+           false        true        true
+     */
+
 }
