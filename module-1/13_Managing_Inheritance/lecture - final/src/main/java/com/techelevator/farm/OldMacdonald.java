@@ -3,9 +3,24 @@ package com.techelevator.farm;
 public class OldMacdonald {
 	public static void main(String[] args) {
 
+		/*
+			FarmAnimal cannot be instantiated because it is abstract
+		 */
+		//FarmAnimal genericFarmAnimal = new FarmAnimal("", "");
+
 		FarmAnimal[] farmAnimals = new FarmAnimal[] { new Cow(), new Chicken(), new Sheep(), new Horse() };
-		Singable[] singers = new Singable[] { new Cow(), new Chicken(),
-				new Sheep(), new Tractor(), new Horse(), new MusicBox() };
+
+		Chicken chicken = new Chicken();
+		chicken.wake();
+
+		Cat farmCat = new Cat();
+		//farmCat.sleep();
+
+		TabbyCat tabbyCat = new TabbyCat();
+
+		Singable[] singers = new Singable[] { new Cow(), chicken,
+				new Sheep(), new Tractor(), new Horse(),
+				new MusicBox(), farmCat };
 		Sellable[] thingsWeCanSell = new Sellable[] { new Cow(), new Chicken(), new Sheep(),
 				new Egg(), new MusicBox() };
 
@@ -19,6 +34,12 @@ public class OldMacdonald {
 			System.out.println("And a " + sound + " " + sound + " there");
 			System.out.println("Here a " + sound + " there a " + sound + " everywhere a " + sound + " " + sound);
 			System.out.println();
+
+			if (animal instanceof Chicken) {
+				Chicken singerAsChicken = (Chicken) animal;
+				((Chicken) animal).layEgg();
+			}
+
 		}
 
 		System.out.println("------------------------");
