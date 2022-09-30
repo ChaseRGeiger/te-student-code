@@ -12,7 +12,7 @@ public class Lecture {
 		private int balance;
 
 		public Lecture(int balance) {
-			this.balance = 100;
+			this.balance = balance;
 		}
 
 		/*
