@@ -1,6 +1,8 @@
 package com.techelevator.temart;
 
 
+import com.techelevator.temart.products.Product;
+
 import java.util.Map;
 import java.util.Scanner;
 

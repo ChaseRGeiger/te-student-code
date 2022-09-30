@@ -1,9 +1,9 @@
-package com.techelevator.temart;
+package com.techelevator.temart.products;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Product {
+public abstract class Product {
 
     private final static double BASE_COST = 5.00;
 
@@ -12,8 +12,8 @@ public class Product {
     private double price;
     private String description;
     private int weightInLbs;
-    private LocalDate expirationDate;
-    private boolean isPerishable;
+    private boolean isTaxable;
+
 
     public Product(String sku) {
         this.sku = sku;
@@ -43,9 +43,6 @@ public class Product {
             totalCost *= 3;
         }
 
-        if (isPerishable) {
-            totalCost *= 2;
-        }
 
         return totalCost;
     }
@@ -90,20 +87,14 @@ public class Product {
         this.weightInLbs = weightInLbs;
     }
 
-    public LocalDate getExpirationDate() {
-        return expirationDate;
+
+
+    public boolean isTaxable() {
+        return isTaxable;
     }
 
-    public void setExpirationDate(LocalDate expirationDate) {
-        this.expirationDate = expirationDate;
-    }
-
-    public boolean isPerishable() {
-        return isPerishable;
-    }
-
-    public void setPerishable(boolean perishable) {
-        isPerishable = perishable;
+    public void setTaxable(boolean taxable) {
+        isTaxable = taxable;
     }
 
     @Override
@@ -111,12 +102,12 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return Double.compare(product.price, price) == 0 && weightInLbs == product.weightInLbs && isPerishable == product.isPerishable && Objects.equals(sku, product.sku) && Objects.equals(name, product.name) && Objects.equals(description, product.description) && Objects.equals(expirationDate, product.expirationDate);
+        return Double.compare(product.price, price) == 0 && weightInLbs == product.weightInLbs && Objects.equals(sku, product.sku) && Objects.equals(name, product.name) && Objects.equals(description, product.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(sku, name, price, description, weightInLbs, expirationDate, isPerishable);
+        return Objects.hash(sku, name, price, description, weightInLbs);
     }
 
     @Override
@@ -127,8 +118,6 @@ public class Product {
                 ", price=" + price +
                 ", description='" + description + '\'' +
                 ", weightInLbs=" + weightInLbs +
-                ", expirationDate=" + expirationDate +
-                ", isPerishable=" + isPerishable +
                 '}';
     }
 }
