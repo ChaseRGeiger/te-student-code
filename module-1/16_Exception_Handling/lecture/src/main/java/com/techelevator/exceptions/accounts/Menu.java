@@ -11,13 +11,18 @@ public class Menu {
     }
 
     public int getAmountFromUser() {
-
+    while(true) {
         System.out.print("Amount to withdraw >>> ");
         String userInput = in.nextLine();
+        try {
+            int amount = Integer.parseInt(userInput);
+            return amount;
+        }
+        catch (NumberFormatException e){
+            System.out.println("Invalid Input. Please enter a new value.");
+        }
 
-        int amount = Integer.parseInt(userInput);
-
-        return amount;
+    }
 
     }
 
