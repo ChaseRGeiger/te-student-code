@@ -15,12 +15,12 @@ public class Menu {
         while (true) {
             System.out.print("Amount to withdraw >>> ");
             String userInput = in.nextLine();
-
+            int amount = 0;
             try {
-                int amount = Integer.parseInt(userInput);
+                amount = Integer.parseInt(userInput);
                 return amount;
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input");
+                System.out.println("Invalid input, you entered " + amount);
             }
         }
 
