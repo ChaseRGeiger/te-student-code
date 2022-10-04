@@ -12,12 +12,17 @@ public class Menu {
 
     public int getAmountFromUser() {
 
-        System.out.print("Amount to withdraw >>> ");
-        String userInput = in.nextLine();
+        while (true) {
+            System.out.print("Amount to withdraw >>> ");
+            String userInput = in.nextLine();
 
-        int amount = Integer.parseInt(userInput);
-
-        return amount;
+            try {
+                int amount = Integer.parseInt(userInput);
+                return amount;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input");
+            }
+        }
 
     }
 
@@ -30,6 +35,10 @@ public class Menu {
         System.out.println(amount + " was withdrawn");
     }
 
+    public void showInsufficientFunds(InsufficientFundsException e) {
+        System.out.println(e.getMessage());
+        System.out.printf("$%2s Fee Charged%n", e.getFee());
+    }
 
 
 }
