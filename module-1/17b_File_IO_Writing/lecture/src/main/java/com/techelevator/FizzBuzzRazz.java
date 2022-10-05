@@ -1,5 +1,6 @@
 package com.techelevator;
 
+import java.io.*;
 import java.util.Scanner;
 
 
@@ -18,7 +19,8 @@ public class FizzBuzzRazz {
 
     private final static Scanner userInput = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
+
 
         System.out.print("Input file: ");
         String inputFileName = userInput.nextLine();
@@ -26,9 +28,50 @@ public class FizzBuzzRazz {
         System.out.print("Output file: ");
         String outputFileName = userInput.nextLine();
 
+        File inputFile = new File(inputFileName);
+        File outputFile = new File(outputFileName);
+
+        try(Scanner fileScanner = new Scanner(inputFile);
+        PrintWriter printWriter = new PrintWriter(outputFileName);
+            BufferedWriter bufferedWriter = new BufferedWriter(printWriter)) {
+
+            while(fileScanner.hasNextLine()){
+
+                String lineReadFromFile = fileScanner.nextLine();
+                String lineToWriteFromFile = buildNewLineFromOld(lineReadFromFile);
+                bufferedWriter.write(lineToWriteFromFile);
+                bufferedWriter.newLine();
+
+            }
 
 
+        }catch (FileNotFoundException e){
+            System.out.println("File not found");
+        }
 
+        System.out.println("Process Complete");
+
+
+    }
+
+    private static String buildNewLineFromOld(String lineFromFile){
+        String newLine = "";
+        String[] words = lineFromFile.split(" ");
+
+        for (String word : words){
+            if(word.length() == 3){
+                word = "FIZZ";
+            }
+            if(word.length() == 5){
+                word = "BUZZ";
+            }
+            if(word.length() == 7){
+                word = "RAZZ";
+            }
+            newLine += word + " ";
+        }
+
+        return newLine;
     }
 
 
