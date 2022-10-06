@@ -1,14 +1,11 @@
 package com.techelevator;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Scanner;
 
 public class FindAndReplace {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         Scanner userInput = new Scanner(System.in);
 
@@ -25,17 +22,23 @@ public class FindAndReplace {
         File initialFile = new File(sourceFile);
         File destination = new File(destFile);
 
-       try(Scanner fileScanner = new Scanner(sourceFile);
-        PrintWriter printWriter = new PrintWriter(destFile);
+       try(Scanner fileScanner = new Scanner(initialFile);
+        PrintWriter printWriter = new PrintWriter(destination);
         BufferedWriter bufferedWriter = new BufferedWriter(printWriter)){
 
-           while(fileScanner.hasNextLine()){
-
-
+           while(fileScanner.hasNextLine()) {
+               String lineFromFile = fileScanner.nextLine();
+               String writeFromFile = replaceStringInEachLine(lineFromFile, searchWord, replaceWord);
+               bufferedWriter.write(writeFromFile);
+               bufferedWriter.newLine();
 
            }
 
-           }
+           } catch (FileNotFoundException e){
+           System.out.println("File Not Found");
+           } catch(IOException e){
+           System.out.println("Error");
+       }
 
 
 
