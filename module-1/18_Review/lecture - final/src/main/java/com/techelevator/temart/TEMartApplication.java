@@ -1,9 +1,13 @@
 package com.techelevator.temart;
 
 
+import com.techelevator.temart.inventory.FileInventory;
+import com.techelevator.temart.inventory.Inventory;
+import com.techelevator.temart.inventory.MemoryInventory;
 import com.techelevator.temart.products.Product;
-import com.techelevator.temart.products.Taxable;
+import com.techelevator.temart.view.Menu;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -11,80 +15,68 @@ import java.util.Scanner;
 public class TEMartApplication {
 
     private final static Scanner userInput = new Scanner(System.in);
+    private Menu menu = new Menu();
+    private ShoppingCart shoppingCart = new ShoppingCart();
 
     public static void main(String[] args) {
+        TEMartApplication app = new TEMartApplication();
+        app.run();
+    }
 
-        System.out.println("**************************");
-        System.out.println(" Welcome to TE Mart ");
-        System.out.println("**************************");
-        System.out.println();
+    public void run() {
 
-        /*
-            1) Get the inventory
-            2) Display the inventory to the user
-            3) Ask the user what product the want by sku
-            4) Show the details of the selected product
-         */
+        Inventory inventoryBuilder = getInventoryBuilder();
+        //Inventory inventoryBuilder = new MemoryInventory();
 
-        Inventory inventoryBuilder = new Inventory();
         Map<String, Product> products = inventoryBuilder.getProducts();
-        ShoppingCart shoppingCart = new ShoppingCart();
 
-        displayInventoryToUser(products);
+        menu.displayWelcomeScreen();
+        menu.displayInventoryToUser(products);
+
+        productSelectionProcess(products);
+        showShoppingCart();
+
+    }
+
+    private Inventory getInventoryBuilder() {
+        Inventory inventoryBuilder = null;
 
         while (true) {
-            System.out.print("Select an Item by Sku (Q to quit) >>> ");
+            String pathToInventoryFile = menu.getInventoryFilepathFromUser();
+            //Inventory inventoryBuilder = new MemoryInventory();
+            try {
+                inventoryBuilder = new FileInventory(pathToInventoryFile);
+                break;
+            } catch (FileNotFoundException e) {
+                menu.tellUserFileNotFound();
+            }
+        }
+        return inventoryBuilder;
+    }
 
-            String skuSelectedByUser = userInput.nextLine().toUpperCase();
+    private void showShoppingCart() {
+        List<Product> currentCartItems = shoppingCart.getItemsInCart();
+        double shoppingCartTotal = shoppingCart.getTotal();
+        menu.showItemsInCart(currentCartItems, shoppingCartTotal);
+    }
 
+    private void productSelectionProcess(Map<String, Product> products) {
+        while (true) {
+
+            String skuSelectedByUser = menu.getSkuFromUser();
             if (skuSelectedByUser.equalsIgnoreCase("Q")) {
                 break;
             }
-
             Product selectedProduct = products.get(skuSelectedByUser);
 
             if (selectedProduct != null) {
                 shoppingCart.addToCart(selectedProduct);
-                // Print the details
-                System.out.println(selectedProduct.getName() + " was added to the cart");
+                menu.showItemAddedToCart(selectedProduct.getName());
             } else {
-                System.out.println("Product not found");
+                menu.showProductNotFound();
             }
         }
-
-        List<Product> currentCartItems = shoppingCart.getItemsInCart();
-
-        System.out.println();
-        System.out.println("Items in your Cart:");
-
-        for (Product product : currentCartItems) {
-            System.out.println("Name: " + product.getName());
-            System.out.println("Category: " + product.getProductType());
-            System.out.printf("Item Price: $%1.2f %n", product.getPrice());
-
-            if (product.isTaxable()) {
-                Taxable productAsTaxable = (Taxable) product;
-                System.out.printf("Tax: $%1.2f %n", productAsTaxable.getTaxAmount());
-            }
-
-            System.out.printf("Total Price: $%1.2f %n", product.getTotalCostWithShipping());
-            System.out.println();
-        }
-
-        System.out.println("------------------------");
-        System.out.printf("Total: $%1.2f %n", shoppingCart.getTotal());
-
-
     }
 
-    private static void displayInventoryToUser(Map<String, Product> products) {
 
-        for ( Map.Entry<String, Product> currentEntry : products.entrySet() ) {
-            System.out.print( currentEntry.getKey() );
-            System.out.print(" : ");
-            System.out.println( currentEntry.getValue().getName() );
-        }
-
-
-    }
 }

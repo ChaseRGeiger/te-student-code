@@ -1,4 +1,4 @@
-package com.techelevator.temart;
+package com.techelevator.temart.inventory;
 
 import com.techelevator.temart.products.*;
 
@@ -6,11 +6,11 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Inventory {
+public class MemoryInventory implements Inventory {
 
     private Map<String, Product> products = new HashMap<String, Product>();
 
-    public Inventory() {
+    public MemoryInventory() {
         populateInventory();
     }
 
