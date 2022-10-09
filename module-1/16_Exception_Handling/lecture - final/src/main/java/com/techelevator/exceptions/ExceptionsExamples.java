@@ -20,17 +20,20 @@ public class ExceptionsExamples {
         Try block identifies code that is at risk of throwing an exception
         If the exception occurs the code after the line it was thrown on will be skipped
          */
-//        try {
-            x = nums[3];
+        try {
+            x = nums[1];
             x = x + 10; // This line only runs if there is no exception on the line above it
-//        } catch (ArrayIndexOutOfBoundsException e) {
-//            // The catch block only runs if an exception of that type occurs
-//            System.out.println("The Array is out of bounds");
-//        } finally {
-//            // the finally block is always run
-//            y = 100;
-//        }
+            System.out.println("This is after the exception");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // The catch block only runs if an exception of that type occurs
+            System.out.println("The Array is out of bounds");
+        } finally {
+            // the finally block is always run
+            y = 100;
+            System.out.println("This is the finally block");
+        }
 
+        System.out.println("This is after the try...catch");
         System.out.println(x);
         System.out.println(y);
     }
@@ -41,7 +44,7 @@ public class ExceptionsExamples {
         try {
             str.toUpperCase();
             Integer.parseInt(str);
-            System.out.println( str.charAt(1) );
+            System.out.println( str.charAt(7) );
         } catch (NullPointerException e) {
             System.out.println("String was null");
         } catch (NumberFormatException e) {

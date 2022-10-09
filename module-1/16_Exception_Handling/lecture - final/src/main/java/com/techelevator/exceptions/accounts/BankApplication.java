@@ -14,9 +14,12 @@ public class BankApplication {
 
         int amount = menu.getAmountFromUser();
 
-        account.withdraw(amount);
-
-        menu.showWithdrawSucceessMessage(amount);
+        try {
+            account.withdraw(amount);
+            menu.showWithdrawSucceessMessage(amount);
+        } catch(InsufficientFundsException e) {
+            menu.showInsufficientFunds(e);
+        }
 
         menu.showBalance(account);
     }
