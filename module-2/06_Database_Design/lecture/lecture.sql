@@ -62,7 +62,7 @@ INSERT INTO ourtable (id, name) VALUES (DEFAULT, 'Matt');
 INSERT INTO ourtable (name) VALUES ('John');
 
 -- Insert into the table with a sequence with a manual value  (CHANGE XX to the next correct value)
-INSERT INTO ourtable (id, name) VALUES ( 5 , 'Dan');
+INSERT INTO ourtable (id, name) VALUES ( 8 , 'Dan');
 
 -- Try to insert another value using DEFAULT or a SubQuery or by Omitting the column in the insert
 INSERT INTO ourtable (id, name) VALUES (DEFAULT, 'Vinny');
