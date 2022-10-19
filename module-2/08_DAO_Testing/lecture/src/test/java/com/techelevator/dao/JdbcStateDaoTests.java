@@ -17,7 +17,7 @@ public class JdbcStateDaoTests extends BaseDaoTests {
 
     @Before
     public void setup() {
-        sut = new JdbcStateDao(mockDataSource);
+        sut = new JdbcStateDao(dataSource);
     }
 
     @Test
