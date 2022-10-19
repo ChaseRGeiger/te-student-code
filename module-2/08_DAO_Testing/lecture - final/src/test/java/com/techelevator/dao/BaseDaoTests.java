@@ -14,13 +14,13 @@ import java.sql.SQLException;
 public abstract class BaseDaoTests {
 
     @Autowired
-    protected DataSource dataSource;
+    protected DataSource mockDataSource;
 
     /* After each test, we rollback any changes that were made to the database so that
      * everything is clean for the next test */
     @After
     public void rollback() throws SQLException {
-        dataSource.getConnection().rollback();
+        mockDataSource.getConnection().rollback();
     }
 
 }

@@ -19,7 +19,7 @@ public class JdbcCityDaoTests extends BaseDaoTests {
 
     @Before
     public void setup() {
-        sut = new JdbcCityDao(dataSource);
+        sut = new JdbcCityDao(mockDataSource);
         testCity = new City(0, "Test City", "CC", 99, 999);
     }
 
