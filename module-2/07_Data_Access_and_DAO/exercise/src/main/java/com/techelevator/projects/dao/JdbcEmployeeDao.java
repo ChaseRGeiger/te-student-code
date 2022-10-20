@@ -38,11 +38,16 @@ public class JdbcEmployeeDao implements EmployeeDao {
 
 	@Override
 	public void removeEmployeeFromProject(int projectId, int employeeId) {
+		String sql = "DELETE FROM project_employee WHERE project_id = ? AND employee_id = ?";
+
+		jdbcTemplate.update(sql, projectId, employeeId);
 	}
 
 	@Override
 	public List<Employee> getEmployeesWithoutProjects() {
-		return new ArrayList<>();
+		List<Employee> employeesWithoutProjects = new ArrayList<Employee>();
+
+		return employeesWithoutProjects;
 	}
 
 
