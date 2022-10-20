@@ -1,6 +1,7 @@
 package com.techelevator.model;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Park {
 
@@ -64,5 +65,18 @@ public class Park {
     @Override
     public String toString() {
         return String.format("%s (ID: %d)", parkName, parkId);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Park park = (Park) o;
+        return parkId == park.parkId && Double.compare(park.area, area) == 0 && hasCamping == park.hasCamping && Objects.equals(parkName, park.parkName) && Objects.equals(dateEstablished, park.dateEstablished);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(parkId, parkName, dateEstablished, area, hasCamping);
     }
 }
