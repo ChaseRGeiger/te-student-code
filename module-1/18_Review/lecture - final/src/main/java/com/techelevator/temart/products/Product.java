@@ -2,64 +2,61 @@ package com.techelevator.temart.products;
 
 import java.util.Objects;
 
-public abstract class Product {
+public class Product {
 
-    private final static double BASE_COST = 5.00;
+    private final static double BASE_SHIPPING_COST = 5.00;
 
-    private String sku;
-    private String name;
+    private String productTypeCode;
     private double price;
+    private String name;
     private String description;
     private int weightInLbs;
-    private boolean isTaxable;
+    private String sku;
+    private boolean isPerishable = false;
+    private boolean isTaxable = false;
 
-    public Product(String sku) {
-        this.sku = sku;
+    public Product() {
+
     }
 
-    public Product(String sku, String name, double price, String description, int weightInLbs) {
-        this.sku = sku;
-        this.name = name;
+
+    public Product(String productTypeCode, String sku, String name, String description, boolean isPerishable, double price, int weightInLbs,  boolean isTaxable) {
+        this.productTypeCode = productTypeCode;
         this.price = price;
+        this.name = name;
         this.description = description;
         this.weightInLbs = weightInLbs;
+        this.sku = sku;
+        this.isPerishable = isPerishable;
+        this.isTaxable = isTaxable;
     }
 
-    public abstract String getProductType();
 
-    /*
-        If weight <= 5 will be a base cost 5.00
-        If the weight  5 and 10 the double the base cost
-        If > 10 then triple the base cost
-        If perishable then every is double the cost
-     */
+    // derived Properties
     public double getShippingCost() {
 
-        double totalCost = BASE_COST;
+        double shippingCost = BASE_SHIPPING_COST;
         if (weightInLbs > 5 && weightInLbs <= 10) {
-            totalCost *= 2;
-        }
-        if (weightInLbs > 10) {
-            totalCost *= 3;
+            shippingCost *= 2;
+        } else if (weightInLbs > 10) {
+            shippingCost *= 4;
         }
 
-        return totalCost;
+        if (isPerishable) {
+            shippingCost *= 2;
+        }
+
+        return shippingCost;
     }
 
     public double getTotalCostWithShipping() {
-        return getShippingCost() + price;
+        return price + getShippingCost();
     }
 
+
+    // Getter and Setter
     public String getSku() {
         return sku;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public double getPrice() {
@@ -68,6 +65,14 @@ public abstract class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -82,10 +87,21 @@ public abstract class Product {
         return weightInLbs;
     }
 
-    public void setWeightInLbs(int weightInLbs) {
-        this.weightInLbs = weightInLbs;
+    public void setWeightInLbs(int weight) {
+        this.weightInLbs = weight;
     }
 
+    public boolean isPerishable() {
+        return isPerishable;
+    }
+
+    public void setPerishable(boolean perishable) {
+        isPerishable = perishable;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
+    }
 
     public boolean isTaxable() {
         return isTaxable;
@@ -95,27 +111,24 @@ public abstract class Product {
         isTaxable = taxable;
     }
 
+    public String getProductTypeCode() {
+        return productTypeCode;
+    }
+
+    public void setProductTypeCode(String productTypeCode) {
+        this.productTypeCode = productTypeCode;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return Double.compare(product.price, price) == 0 && weightInLbs == product.weightInLbs && Objects.equals(sku, product.sku) && Objects.equals(name, product.name) && Objects.equals(description, product.description);
+        return Double.compare(product.price, price) == 0 && weightInLbs == product.weightInLbs && isPerishable == product.isPerishable && isTaxable == product.isTaxable && Objects.equals(productTypeCode, product.productTypeCode) && Objects.equals(name, product.name) && Objects.equals(description, product.description) && Objects.equals(sku, product.sku);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(sku, name, price, description, weightInLbs);
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "sku='" + sku + '\'' +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", description='" + description + '\'' +
-                ", weightInLbs=" + weightInLbs +
-                '}';
+        return Objects.hash(productTypeCode, price, name, description, weightInLbs, sku, isPerishable, isTaxable);
     }
 }
