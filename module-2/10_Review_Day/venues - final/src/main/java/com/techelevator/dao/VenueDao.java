@@ -7,4 +7,5 @@ import java.util.List;
 public interface VenueDao {
 
     List<Venue> getAllVenues();
+    Venue getVenueById(long id);
 }

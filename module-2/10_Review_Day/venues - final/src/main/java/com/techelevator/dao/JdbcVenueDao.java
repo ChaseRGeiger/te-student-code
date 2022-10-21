@@ -38,6 +38,26 @@ public class JdbcVenueDao implements VenueDao {
         return venues;
     }
 
+    public Venue getVenueById(long id) {
+        Venue venue = null;
+        String sql = "SELECT venue.id, venue.name AS venue_name, city.name AS city_name, " +
+                "venue.description, state.name AS state_name, state.abbreviation " +
+                "FROM venue " +
+                "JOIN city ON venue.city_id = city.id " +
+                "JOIN state ON city.state_abbreviation = state.abbreviation " +
+                "WHERE venue.id = ? " +
+                "ORDER BY venue.id";
+
+        SqlRowSet rows = jdbcTemplate.queryForRowSet(sql, id);
+
+        while(rows.next()) {
+            venue = mapRowToVenue(rows);
+            venue.setCategories( getCategoriesForVenue(venue.getId()) );
+        }
+
+        return venue;
+    }
+
     private List<String> getCategoriesForVenue(long venueId) {
         List<String> categories = new ArrayList<String>();
 

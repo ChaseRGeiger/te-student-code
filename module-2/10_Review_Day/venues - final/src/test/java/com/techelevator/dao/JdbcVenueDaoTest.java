@@ -38,4 +38,10 @@ public class JdbcVenueDaoTest extends BaseDaoTests {
         Assert.assertEquals(15, venuesReturned.size());
         Assert.assertTrue(venuesReturned.contains(testVenueOne));
     }
+
+    @Test
+    public void get_venue_by_venue_id() {
+        Venue venueReturned = venueDao.getVenueById(1);
+        Assert.assertEquals(testVenueOne, venueReturned);
+    }
 }
