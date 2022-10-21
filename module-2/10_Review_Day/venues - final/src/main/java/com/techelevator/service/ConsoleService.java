@@ -1,5 +1,8 @@
 package com.techelevator.service;
 
+import com.techelevator.dao.model.Venue;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleService {
@@ -11,5 +14,12 @@ public class ConsoleService {
         System.out.println("*       WECLOME TO       *");
         System.out.println("*    JAVA BLUE VENUES    *");
         System.out.println("**************************");
+    }
+
+    public void showListOfVenues(List<Venue> venues) {
+
+        for (Venue venue : venues) {
+            System.out.println(venue.getId() + ") " + venue.getName());
+        }
     }
 }
