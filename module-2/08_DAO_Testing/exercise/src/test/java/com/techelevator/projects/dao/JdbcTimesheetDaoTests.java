@@ -70,7 +70,9 @@ public class JdbcTimesheetDaoTests extends BaseDaoTests {
 
     @Test
     public void created_timesheet_has_expected_values_when_retrieved() {
-        Assert.fail();
+        test = dao.createTimesheet(TIMESHEET_1);
+        Timesheet correctTimesheet = new Timesheet(5, 1, 1, LocalDate.parse("2021-01-01"), 1.0, true, "Timesheet 1");
+        assertTimesheetsMatch(correctTimesheet, test);
     }
 
     @Test
