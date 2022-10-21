@@ -18,4 +18,8 @@ public class ReservationService {
     public List<Venue> getListOfVenues() {
         return venueDao.getAllVenues();
     }
+
+    public Venue getVenueById(int venueId) {
+        return venueDao.getVenueById(venueId);
+    }
 }

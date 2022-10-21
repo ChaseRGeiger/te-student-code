@@ -77,4 +77,16 @@ public class Venue {
     public int hashCode() {
         return Objects.hash(id, name, city, description, state, categories);
     }
+
+    @Override
+    public String toString() {
+        return "Venue{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", city='" + city + '\'' +
+                ", description='" + description + '\'' +
+                ", state=" + state +
+                ", categories=" + categories +
+                '}';
+    }
 }

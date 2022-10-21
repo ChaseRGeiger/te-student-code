@@ -35,4 +35,12 @@ public class State {
     public int hashCode() {
         return Objects.hash(name, abbreviation);
     }
+
+    @Override
+    public String toString() {
+        return "State{" +
+                "name='" + name + '\'' +
+                ", abbreviation='" + abbreviation + '\'' +
+                '}';
+    }
 }

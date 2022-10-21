@@ -22,4 +22,19 @@ public class ConsoleService {
             System.out.println(venue.getId() + ") " + venue.getName());
         }
     }
+
+    public int getVenueIdFromUser() {
+        System.out.print("Venue Id >>>");
+        String userChoice = in.nextLine();
+        return Integer.parseInt(userChoice);
+    }
+
+    public void displayVenue(Venue venue) {
+        System.out.println("Id: " + venue.getId() );
+        System.out.println("Name: " + venue.getName());
+        System.out.printf("Location: %-1s, %-1s %n", venue.getCity(), venue.getState().getAbbreviation());
+        System.out.println("Categories: " + String.join(",", venue.getCategories()));
+        System.out.println();
+        System.out.println(venue.getDescription());
+    }
 }

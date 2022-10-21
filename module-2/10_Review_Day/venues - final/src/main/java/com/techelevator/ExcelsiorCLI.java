@@ -23,8 +23,13 @@ public class ExcelsiorCLI {
 		consoleService.showWelcome();
 
 		List<Venue> venues = reservationService.getListOfVenues();
-
 		consoleService.showListOfVenues(venues);
+
+		int venueId = consoleService.getVenueIdFromUser();
+
+		Venue venue = reservationService.getVenueById(venueId);
+		consoleService.displayVenue(venue);
+
 	}
 
 
