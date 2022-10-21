@@ -37,7 +37,7 @@ public class JdbcTimesheetDao implements TimesheetDao {
                      "WHERE employee_id = ? " +
                      "ORDER BY timesheet_id;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, employeeId);
-        if (results.next()) {
+        while (results.next()) {
             Timesheet timesheet = mapRowToTimesheet(results);
             timesheets.add(timesheet);
         }
@@ -49,7 +49,7 @@ public class JdbcTimesheetDao implements TimesheetDao {
         List<Timesheet> timesheets = new ArrayList<>();
         String sql = "SELECT timesheet_id, employee_id, project_id, date_worked, hours_worked, billable, description " +
                      "FROM timesheet " +
-                     "WHERE employee_id = ? " +
+                     "WHERE project_id = ? " +
                      "ORDER BY timesheet_id;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, projectId);
         while (results.next()) {
@@ -90,7 +90,7 @@ public class JdbcTimesheetDao implements TimesheetDao {
         double billableHours = 0;
         String sql = "SELECT SUM(hours_worked) AS billable_hours " +
                      "FROM timesheet " +
-                     "WHERE employee_id = ? AND project_id = ?";
+                     "WHERE employee_id = ? AND project_id = ? AND billable = true";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, employeeId, projectId);
         if (results.next()) {
             billableHours = results.getDouble("billable_hours");

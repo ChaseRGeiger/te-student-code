@@ -1,6 +1,7 @@
 package com.techelevator.projects.model;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Timesheet {
     private int timesheetId;
@@ -78,5 +79,18 @@ public class Timesheet {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Timesheet timesheet = (Timesheet) o;
+        return timesheetId == timesheet.timesheetId && employeeId == timesheet.employeeId && projectId == timesheet.projectId && Double.compare(timesheet.hoursWorked, hoursWorked) == 0 && billable == timesheet.billable && Objects.equals(dateWorked, timesheet.dateWorked) && Objects.equals(description, timesheet.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(timesheetId, employeeId, projectId, dateWorked, hoursWorked, billable, description);
     }
 }
