@@ -1,5 +1,7 @@
 package com.techelevator.hotels;
 
+import com.techelevator.hotels.model.Hotel;
+import com.techelevator.hotels.model.Review;
 import com.techelevator.hotels.services.ConsoleService;
 import com.techelevator.hotels.services.HotelService;
 
@@ -49,30 +51,33 @@ public class App {
     }
 
     private void listAllHotels() {
-        System.out.println("Not implemented");
+        Hotel[] hotels = hotelService.listHotels();
+        consoleService.printHotels(hotels);
     }
 
     private void listAllReviews() {
-        System.out.println("Not implemented");
+        Review[] reviews = hotelService.listReviews();
+        consoleService.printReviews(reviews);
     }
 
     private void showDetailsForHotel() {
         int hotelId = consoleService.getHotelId();
-        System.out.println("Not implemented");
+        consoleService.printHotel(hotelService.getHotelById(hotelId));
     }
 
     private void showReviewsForHotel() {
         int hotelId = consoleService.getHotelId();
-        System.out.println("Not implemented");
+        consoleService.printReviews(hotelService.getReviewsByHotelId(hotelId));
+
     }
 
     private void searchHotelsByStarReview() {
         int starRating = consoleService.getStarRating();
-        System.out.println("Not implemented");
+        consoleService.printHotels((hotelService.getHotelsByStarRating(starRating)));
     }
 
     private void queryAPublicApi() {
-        System.out.println("Not implemented - Create a custom Web API query here");
+        consoleService.printCountry(hotelService.getWithCustomQuery());
     }
 
 }
