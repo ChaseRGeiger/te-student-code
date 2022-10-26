@@ -3,9 +3,13 @@ package com.techelevator.hotels.services;
 import com.techelevator.hotels.model.Hotel;
 import com.techelevator.hotels.model.Reservation;
 import com.techelevator.util.BasicLogger;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.MediaType;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.http.HttpHeaders;
+
 
 
 public class HotelService {
@@ -18,7 +22,19 @@ public class HotelService {
      */
     public Hotel[] listHotels() {
         Hotel[] hotels = null;
-        // TODO: Implement Method
+
+        String url = API_BASE_URL + "hotels/";
+
+
+        try {
+            hotels = restTemplate.getForObject(url, Hotel[].class);
+        }catch (RestClientResponseException e) {
+            BasicLogger.log(e.getRawStatusCode() + " : " + e.getStatusText());
+
+        }catch (ResourceAccessException e){
+            BasicLogger.log(e.getMessage());
+        }
+
         return hotels;
     }
 
@@ -26,8 +42,19 @@ public class HotelService {
      * Create a new reservation in the hotel reservation system
      */
     public Reservation addReservation(Reservation newReservation) {
-        // TODO: Implement method
-        return null;
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Reservation> requestEntity = new HttpEntity<Reservation>(newReservation, headers);
+
+        Reservation returnedReservation = null;
+        try {
+            returnedReservation = restTemplate.postForObject(API_BASE_URL + "reservations", requestEntity, Reservation.class);
+        } catch (ResourceAccessException e){
+            BasicLogger.log(e.getMessage());
+        } catch (RestClientResponseException e){
+            BasicLogger.log(e.getRawStatusCode() + " : " + e.getStatusText());
+        }
+        return returnedReservation;
     }
 
     /**
@@ -35,7 +62,19 @@ public class HotelService {
      * reservation
      */
     public boolean updateReservation(Reservation updatedReservation) {
-        // TODO: Implement method
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Reservation> updateEntity = new HttpEntity<Reservation>(updatedReservation, headers);
+
+        try {
+            restTemplate.put(API_BASE_URL + "reservations/" + updatedReservation.getId(), updateEntity);
+            return true;
+        } catch (RestClientResponseException e){
+            BasicLogger.log(e.getRawStatusCode() + " : " + e.getStatusText());
+        } catch (ResourceAccessException e){
+            BasicLogger.log(e.getMessage());
+        }
+
         return false;
     }
 
@@ -43,7 +82,15 @@ public class HotelService {
      * Delete an existing reservation
      */
     public boolean deleteReservation(int id) {
-        // TODO: Implement method
+        String url = API_BASE_URL + "reservations/" + id;
+        try {
+            restTemplate.delete(url);
+            return true;
+        } catch (RestClientResponseException e){
+            BasicLogger.log(e.getRawStatusCode() + " : " + e.getStatusText());
+        } catch (ResourceAccessException e){
+            BasicLogger.log(e.getMessage());
+        }
         return false;
     }
 
