@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 public class HotelService {
 
-    private static final String API_BASE_URL = "http://localhost:3000/";
+    private static final String API_BASE_URL = "http://localhost:8080/";
     private final RestTemplate restTemplate = new RestTemplate();
 
     /**
