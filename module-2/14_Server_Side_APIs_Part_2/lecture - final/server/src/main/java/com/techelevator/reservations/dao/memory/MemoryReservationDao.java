@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import com.techelevator.reservations.model.Hotel;
 import com.techelevator.reservations.model.Reservation;
 
-@Component
+
 public class MemoryReservationDao implements ReservationDao {
 
     private List<Reservation> reservations = new ArrayList<>();
