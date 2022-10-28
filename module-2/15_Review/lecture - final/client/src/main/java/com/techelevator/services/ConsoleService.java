@@ -10,6 +10,17 @@ public class ConsoleService {
 
   private static final Scanner in = new Scanner(System.in);
 
+  public void displayAllProducts(List<Product> products) {
+    /*
+      8) The List<Product> is passed here and then displayed to the user in the console
+     */
+    displayProductsHeader();
+    for (Product product : products) {
+      displaySingleProductLine(product);
+    }
+  }
+
+
   private void displaySingleProductLine(Product product) {
     System.out.printf("%-10s %-15s %-25s $%-7.2f%n", product.getSku(), product.getProductType(),
             product.getName(), product.getPrice());

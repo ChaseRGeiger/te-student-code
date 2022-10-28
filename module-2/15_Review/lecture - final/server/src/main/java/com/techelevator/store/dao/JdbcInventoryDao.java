@@ -21,6 +21,10 @@ public class JdbcInventoryDao implements InventoryDao {
 
     @Override
     public List<Product> getAllProducts() {
+        /*
+         4) The DAO retrieves the list of products from the
+            database and returns it as a List<Product>
+         */
         List<Product> products = new ArrayList<Product>();
         String sql = "SELECT sku, product_type.name AS product_type_name, product.name, description, perishable, price, " +
                 "weight_in_lbs, taxable" +
