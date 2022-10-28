@@ -11,7 +11,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RestController;
 
-@Component
+
 public class MemoryHotelDao implements HotelDao {
 
     private List<Hotel> hotels = new ArrayList<>();

@@ -2,12 +2,15 @@ package com.techelevator.reservations.controllers;
 
 import com.techelevator.reservations.dao.HotelDao;
 import com.techelevator.reservations.dao.ReservationDao;
+import com.techelevator.reservations.dao.jdbc.JdbcHotelDao;
 import com.techelevator.reservations.model.Hotel;
 import com.techelevator.reservations.model.Reservation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,8 +98,9 @@ public class HotelController {
      *
      * @param reservation
      */
+    @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/reservations", method = RequestMethod.POST)
-    public Reservation addReservation(@RequestBody Reservation reservation) {
+    public Reservation addReservation(@Valid @RequestBody Reservation reservation) {
         return reservationDao.create(reservation, reservation.getHotelID());
     }
 
@@ -106,7 +110,14 @@ public class HotelController {
      * @param  id
      * @param reservation
      */
-
+    @RequestMapping(path="/reservations/{id}", method = RequestMethod.PUT)
+    public Reservation update(@Valid @RequestBody Reservation reservation, @PathVariable int id) {
+        Reservation reservationFromDao = reservationDao.get(id);
+        if (reservationFromDao == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Reservation not found");
+        }
+        return reservationDao.update(reservation, id);
+    }
 
 
 
@@ -115,7 +126,14 @@ public class HotelController {
      *
      * @param  id
      */
-
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(path="/reservations/{id}", method = RequestMethod.DELETE)
+    public void deleteReservation(@PathVariable int id) {
+        if (reservationDao.get(id) == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Reservation not found");
+        }
+        reservationDao.delete(id);
+    }
 
 
 
