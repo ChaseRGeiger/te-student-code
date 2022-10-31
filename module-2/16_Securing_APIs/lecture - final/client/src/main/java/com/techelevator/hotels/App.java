@@ -32,8 +32,7 @@ public class App {
                 handleDeleteReservation();
             } else if (menuSelection == 6) {
                 handleLogin();
-            }
-            else if (menuSelection == 0) {
+            } else if (menuSelection == 0) {
                 continue;
             } else {
                 // anything else is not valid
