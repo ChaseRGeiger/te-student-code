@@ -10,10 +10,34 @@ import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
+public class JdbcInventoryDao implements InventoryDao {
 
-public class JdbcInventoryDao  {
+    private JdbcTemplate jdbcTemplate;
 
+    public JdbcInventoryDao(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
+    }
 
+    @Override
+    public List<Product> getAllProducts() {
+        /*
+         4) The DAO retrieves the list of products from the
+            database and returns it as a List<Product>
+         */
+        List<Product> products = new ArrayList<Product>();
+        String sql = "SELECT sku, product_type.name AS product_type_name, product.name, description, perishable, price, " +
+                "weight_in_lbs, taxable" +
+                " FROM product" +
+                " JOIN product_type ON product.product_type = product_type.id";
+
+        SqlRowSet rows = jdbcTemplate.queryForRowSet(sql);
+
+        while (rows.next()) {
+            products.add( mapRowToProduct(rows ));
+        }
+        return products;
+    }
 
     private Product mapRowToProduct(SqlRowSet row) {
         Product product = new Product();
@@ -29,4 +53,6 @@ public class JdbcInventoryDao  {
 
         return product;
     }
+
+
 }
