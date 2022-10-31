@@ -8,8 +8,21 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@RestController
 public class InventoryController {
+
+    private InventoryDao inventoryDao;
+
+    public InventoryController(InventoryDao inventoryDao){
+        this.inventoryDao = inventoryDao;
+    }
+
+    @GetMapping(path = "/products")
+    public List<Product> listProducts(){
+        return inventoryDao.getAllProducts();
+    }
+
+
 
 
 }

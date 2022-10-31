@@ -13,6 +13,8 @@ public class App {
     private StoreService storeService = new StoreService();
 
     public void run() {
+        List<Product> products = storeService.getAllProducts();
+        consoleService.displayAllProducts(products);
 
 
 

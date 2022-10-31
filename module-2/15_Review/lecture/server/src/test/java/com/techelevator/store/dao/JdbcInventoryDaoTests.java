@@ -23,7 +23,18 @@ public class JdbcInventoryDaoTests extends BaseDaoTests {
 
     @Before
     public void setup() {
+        dao = new JdbcInventoryDao(dataSource);
+    }
 
+    @Test
+    public void get_all_products(){
+        List<Product> actualProducts = dao.getAllProducts();
+        Assert.assertEquals("Wrong number of products", 5, actualProducts.size());
+        Assert.assertTrue("Does not contain Clothing Product 1", actualProducts.contains(CLOTHING_PRODUCT_1));
+        Assert.assertTrue("Does not contain Grocery Product 1", actualProducts.contains(GROCERY_PRODUCT_1));
+        Assert.assertTrue("Does not contain Home Good Product 1", actualProducts.contains(HOMEGOOD_PRODUCT_1));
+        Assert.assertTrue("Does not contain Book Product 1", actualProducts.contains(BOOK_PRODUCT_1));
+        Assert.assertTrue("Does not contain Book Product 2", actualProducts.contains(BOOK_PRODUCT_2));
     }
 
 
