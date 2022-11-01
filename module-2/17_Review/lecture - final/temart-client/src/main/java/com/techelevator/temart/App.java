@@ -3,6 +3,7 @@ package com.techelevator.temart;
 import com.techelevator.temart.model.AuthenticatedUser;
 import com.techelevator.temart.model.Product;
 import com.techelevator.temart.model.UserCredentials;
+import com.techelevator.temart.model.Wishlist;
 import com.techelevator.temart.services.AuthenticationService;
 import com.techelevator.temart.services.ConsoleService;
 import com.techelevator.temart.services.StoreService;
@@ -64,6 +65,7 @@ public class App {
     private void handleLogin() {
         UserCredentials credentials = consoleService.promptForCredentials();
         currentUser = authenticationService.login(credentials);
+        storeService.setCurrentUser(currentUser);
         if (currentUser == null) {
             consoleService.printErrorMessage();
         }
@@ -104,9 +106,12 @@ public class App {
 	}
 
 	private void createWishlist() {
-		// TODO Auto-generated method stub
-		
-	}
+        String wishlistName = consoleService.askUserForWishlistName();
+        Wishlist wishlist = storeService.addNewWishlist(wishlistName);
+        if (wishlist != null) {
+            consoleService.wishlistCreatedSuccessfully(wishlist);
+        }
+    }
 
 	private void viewWishlists() {
 		// TODO Auto-generated method stub

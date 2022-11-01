@@ -3,6 +3,7 @@ package com.techelevator.temart.services;
 
 import com.techelevator.temart.model.Product;
 import com.techelevator.temart.model.UserCredentials;
+import com.techelevator.temart.model.Wishlist;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -103,6 +104,15 @@ public class ConsoleService {
         }
     }
 
+    public String askUserForWishlistName() {
+        System.out.print("Wishlist name >>>");
+        return scanner.nextLine();
+    }
+
+    public void wishlistCreatedSuccessfully(Wishlist wishlist) {
+        System.out.println("Wishlist, " + wishlist.getName() + " created " +
+                "successfully!");
+    }
 
     private void displaySingleProductLine(Product product) {
         System.out.printf("%-10s %-15s %-25s $%-7.2f%n", product.getSku(), product.getProductType(),
@@ -113,4 +123,5 @@ public class ConsoleService {
         System.out.printf("%-10s %-15s %-25s %-7s%n", "Sku", "Type", "Name", "Price");
         System.out.println("-".repeat(60));
     }
+
 }
