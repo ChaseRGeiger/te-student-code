@@ -33,6 +33,9 @@ public class AuctionService {
     public Auction getAuction(int id) {
         Auction auction = null;
         try {
+            ResponseEntity<Auction> responseEntity = restTemplate.exchange(API_BASE_URL + "auctions/" + id,
+                    HttpMethod.GET, makeAuthEntity(), Auction.class);
+            auction = responseEntity.getBody();
             // Add code here to send the request to the API and get the auction from the response.
         } catch (RestClientResponseException | ResourceAccessException e) {
             BasicLogger.log(e.getMessage());
