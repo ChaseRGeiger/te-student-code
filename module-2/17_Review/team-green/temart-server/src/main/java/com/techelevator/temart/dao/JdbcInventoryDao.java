@@ -38,6 +38,17 @@ public class JdbcInventoryDao implements InventoryDao {
         return products;
     }
 
+    @Override
+    public Product getProductBySku(String sku){
+        Product product = null;
+
+        String sql = "SELECT sku, name, price FROM product " +
+                "WHERE sku = ?";
+        product = jdbcTemplate.queryForObject(sql, Product.class);
+
+        return product;
+    }
+
     private Product mapRowToProduct(SqlRowSet row) {
         Product product = new Product();
 

@@ -29,4 +29,9 @@ public class MockInventoryDao implements InventoryDao {
         products.add(BOOK_PRODUCT_2);
         return products;
     }
+
+    @Override
+    public Product getProductBySku(String sku){
+        return null;
+    }
 }

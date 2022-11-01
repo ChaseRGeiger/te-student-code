@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface InventoryDao {
 
+    public Product getProductBySku(String sku);
+
     public List<Product> getAllProducts();
 }
