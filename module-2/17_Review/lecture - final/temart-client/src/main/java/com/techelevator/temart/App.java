@@ -1,9 +1,6 @@
 package com.techelevator.temart;
 
-import com.techelevator.temart.model.AuthenticatedUser;
-import com.techelevator.temart.model.Product;
-import com.techelevator.temart.model.UserCredentials;
-import com.techelevator.temart.model.Wishlist;
+import com.techelevator.temart.model.*;
 import com.techelevator.temart.services.AuthenticationService;
 import com.techelevator.temart.services.ConsoleService;
 import com.techelevator.temart.services.StoreService;
@@ -120,8 +117,11 @@ public class App {
 
 	private void addProductToWishlist() {
 		// TODO Auto-generated method stub
-		
-	}
+		listAllProducts();
+        String sku = consoleService.getSkuFromUser();
+        int wishlistId = consoleService.getWishlistIdFromUser();
+	    storeService.addProductToWishlist(new ProductWishlist(sku, wishlistId));
+    }
 
 
 }

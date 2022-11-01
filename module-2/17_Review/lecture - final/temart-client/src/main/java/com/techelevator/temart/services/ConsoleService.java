@@ -114,6 +114,29 @@ public class ConsoleService {
                 "successfully!");
     }
 
+    public String getSkuFromUser() {
+        System.out.println("Select a product to add to the wishlist.");
+        System.out.print("Sku >>>");
+        return scanner.nextLine();
+    }
+
+    public int getWishlistIdFromUser() {
+
+        int id = 0;
+        while (id == 0) {
+            System.out.print("Wishlist Id >>>");
+            String input = scanner.nextLine();
+            try {
+               id = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a number");
+            }
+        }
+
+        return id;
+
+    }
+
     private void displaySingleProductLine(Product product) {
         System.out.printf("%-10s %-15s %-25s $%-7.2f%n", product.getSku(), product.getProductType(),
                 product.getName(), product.getPrice());
