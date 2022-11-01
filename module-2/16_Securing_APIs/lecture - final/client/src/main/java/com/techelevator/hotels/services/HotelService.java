@@ -25,9 +25,24 @@ public class HotelService {
     public Reservation[] listReservations() {
         Reservation[] reservations = null;
 
-        //TODO: Add implementation
-        BasicLogger.log("HotelService.listReservations() has not been implemented");
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(authToken);
+        HttpEntity<Void> entityWithNoMessageBody = new HttpEntity<Void>(headers);
+        try {
+            /*
+                Exchange returns a ResponseEntity with the body being set to the expected return type
 
+                exchange( url, httpMethod, httpEntity, class to deserialize the response as )
+             */
+            ResponseEntity<Reservation[]> responseEntity = restTemplate.exchange(API_BASE_URL + "reservations",
+                    HttpMethod.GET, entityWithNoMessageBody, Reservation[].class);
+            /*
+                getBody() retrieves the deserialized response object from the ResponseEntity
+             */
+            reservations = responseEntity.getBody();
+        } catch (RestClientResponseException | ResourceAccessException e) {
+            BasicLogger.log(e.getMessage());
+        }
         return reservations;
     }
 
@@ -37,8 +52,15 @@ public class HotelService {
     public Reservation addReservation(Reservation newReservation) {
         Reservation returnedReservation = null;
 
-        //TODO: Add implementation
-        BasicLogger.log("HotelService.addReservation() has not been implemented");
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setBearerAuth(authToken);
+        HttpEntity<Reservation> entityWithMessageBody = new HttpEntity<Reservation>(newReservation, headers);
+
+        ResponseEntity<Reservation> response = restTemplate.exchange(API_BASE_URL + "reservations", HttpMethod.POST,
+                entityWithMessageBody, Reservation.class);
+
+        returnedReservation = response.getBody();
 
         return returnedReservation;
     }
