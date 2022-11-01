@@ -2,6 +2,7 @@ package com.techelevator.temart.services;
 
 import com.techelevator.temart.model.AuthenticatedUser;
 import com.techelevator.temart.model.Product;
+import com.techelevator.temart.model.ProductWishlist;
 import com.techelevator.temart.model.Wishlist;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
@@ -57,6 +58,18 @@ public class StoreService {
         returnedWishlist = response.getBody();
 
         return returnedWishlist;
+    }
+
+    public void addProductToWishlist(ProductWishlist productWishlist) {
+        String url = baseApiUrl + "wishlists/" + productWishlist.getWishlistId() + "/products";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setBearerAuth(currentUser.getToken());
+        HttpEntity<ProductWishlist> requestEntity = new HttpEntity<ProductWishlist>(
+                productWishlist, headers);
+
+        restTemplate.exchange(url, HttpMethod.POST, requestEntity, Void.class);
     }
 
 }
