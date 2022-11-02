@@ -76,7 +76,7 @@ public class AuctionController {
 
     @RequestMapping(path = "/whoami")
     public String whoAmI() {
-        return ;
+        return "";
     }
 
 }
