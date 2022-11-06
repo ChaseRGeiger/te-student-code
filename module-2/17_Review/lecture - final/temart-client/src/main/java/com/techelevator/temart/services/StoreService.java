@@ -1,6 +1,10 @@
 package com.techelevator.temart.services;
 
+import com.techelevator.temart.model.AuthenticatedUser;
 import com.techelevator.temart.model.Product;
+import com.techelevator.temart.model.ProductWishlist;
+import com.techelevator.temart.model.Wishlist;
+import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -8,17 +12,21 @@ import java.util.List;
 public class StoreService {
 
     private String baseApiUrl;
+    private AuthenticatedUser currentUser;
+    RestTemplate restTemplate = new RestTemplate();
 
     public StoreService(String baseApiUrl) {
         this.baseApiUrl = baseApiUrl;
     }
 
-    RestTemplate restTemplate = new RestTemplate();
+    public void setCurrentUser(AuthenticatedUser currentUser) {
+        this.currentUser = currentUser;
+    }
 
     /*
-        The only connection between the client and the server is the
-        endpoint (/products) and the web method (GET) and JSON request/response
-     */
+            The only connection between the client and the server is the
+            endpoint (/products) and the web method (GET) and JSON request/response
+         */
     public List<Product> getAllProducts() {
         String url = baseApiUrl + "products";
         /*
@@ -31,6 +39,37 @@ public class StoreService {
                The Array is then converted into a List<Product> and returned
          */
         return List.of(products);
+    }
+
+    public Wishlist addNewWishlist(String wishlistName) {
+        Wishlist returnedWishlist = null;
+
+        String url = baseApiUrl + "wishlists";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setBearerAuth(currentUser.getToken());
+        HttpEntity<Wishlist> requestEntity = new HttpEntity<Wishlist>(
+                new Wishlist(wishlistName), headers);
+
+        ResponseEntity<Wishlist> response = restTemplate.exchange(url, HttpMethod.POST,
+                requestEntity, Wishlist.class);
+
+        returnedWishlist = response.getBody();
+
+        return returnedWishlist;
+    }
+
+    public void addProductToWishlist(ProductWishlist productWishlist) {
+        String url = baseApiUrl + "wishlists/" + productWishlist.getWishlistId() + "/products";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setBearerAuth(currentUser.getToken());
+        HttpEntity<ProductWishlist> requestEntity = new HttpEntity<ProductWishlist>(
+                productWishlist, headers);
+
+        restTemplate.exchange(url, HttpMethod.POST, requestEntity, Void.class);
     }
 
 }

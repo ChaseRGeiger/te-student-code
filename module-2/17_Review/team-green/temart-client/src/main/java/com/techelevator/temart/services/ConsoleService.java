@@ -3,6 +3,7 @@ package com.techelevator.temart.services;
 
 import com.techelevator.temart.model.Product;
 import com.techelevator.temart.model.UserCredentials;
+import com.techelevator.temart.model.Wishlist;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -80,6 +81,14 @@ public class ConsoleService {
         }
     }
 
+    public void addProductToWishlistResponse() {
+        System.out.println("Product was added successfully");
+    }
+
+    public void addProductToWishlistResponseFail() {
+        System.out.println("Product was not added successfully");
+    }
+
     public void pause() {
         System.out.println("\nPress Enter to continue...");
         scanner.nextLine();
@@ -97,12 +106,40 @@ public class ConsoleService {
     /*
       8) The List<Product> is passed here and then displayed to the user in the console
      */
+
         displayProductsHeader();
         for (Product product : products) {
             displaySingleProductLine(product);
         }
     }
+    public String askUserForWishlistName() {
+        System.out.print("Wishlist name >>>");
+        return scanner.nextLine();
+    }
 
+    public void wishlistCreatedSuccessfully(Wishlist wishlist) {
+        System.out.println("Wishlist, " + wishlist.getName() + " created " +
+                "successfully!");
+    }
+
+    public void displayWishlist(List<Wishlist> wishlists) {
+        for(Wishlist wishlist : wishlists) {
+            System.out.println(wishlist.getId() + " " + wishlist.getName() );
+
+        }
+    }
+    public String askUserForProductId() {
+        System.out.println("product id to add to wishlist " );
+        String idString = scanner.nextLine();
+        return idString;
+    }
+
+
+    public int askUserForWishlistId() {
+        System.out.println("wishlist id to add product to " );
+        String idString = scanner.nextLine();
+        return Integer.parseInt(idString);
+    }
 
     private void displaySingleProductLine(Product product) {
         System.out.printf("%-10s %-15s %-25s $%-7.2f%n", product.getSku(), product.getProductType(),
