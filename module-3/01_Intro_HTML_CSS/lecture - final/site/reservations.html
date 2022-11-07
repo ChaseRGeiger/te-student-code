@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bits & Bytes Reservations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="site.css" />
+</head>
+<body>
+    <header>
+        <h1>Bits & Bytes</h1>
+        <p>Welcome to the internet's best restaurant</p>
+    </header>
+    <nav>
+        <a href="index.html">View Menu</a>
+    </nav>
+    <main>
+        <h2>Reservation Form</h2>
+        <form action="/api/reservations" method="POST">
+            <div>
+                <label for="reservationName">Name:</label>
+                <input id="reservationName" name="nameForReservation" type="text">
+            </div>
+            <div>
+                <label for="numberOfGuests">Number of Guests:</label>
+                <input type="number" min="1" max="10" id="numberOfGuests" name="countOfGuests" />
+            </div>
+            <div>
+                <label for="reservationDate">Date:</label>
+                <input type="date" id="reservationDate" name="date" />
+            </div>
+            <div>
+                <label for="reservationTime">Time:</label>
+                <input type="time" id="reservationTime" name="time" />
+            </div>
+            <div>
+                <label for="specialOccasion">Special Occasion:</label>
+                <input type="checkbox" id="specialOccasion" name="specialOccasion" />
+            </div>
+            <div>
+                <p>Table Cloth Color:</p>
+                <label for="whiteTableCloth">White:</label>
+                <input type="radio" id="whiteTableCloth" name="clothColor" value="white" />
+                <label for="greenTableCloth">Green:</label>
+                <input type="radio" id="greenTableCloth" name="clothColor" value="green" />
+                <label for="purpleTableCloth">Purple:</label>
+                <input type="radio" id="purpleTableCloth" name="clothColor" value="purple" />
+            </div>
+            <div>
+                <label for="occasionType">Type of Occasion:</label>
+                <select name="type" id="occasionType">
+                    <option value="A">Anniversary</option>
+                    <option value="B">Birthday</option>
+                    <option value="O">Other</option>
+                    <option value="N">None</option>
+                </select>
+            </div>
+            <div>
+                <input type="submit" />
+            </div>
+        </form>
+    </main>
+    
+</body>
+</html>

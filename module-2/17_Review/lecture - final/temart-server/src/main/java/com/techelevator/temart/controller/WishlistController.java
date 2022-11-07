@@ -34,7 +34,7 @@ public class WishlistController {
     @RequestMapping(path="/wishlists/{id}/products", method= RequestMethod.POST)
     public void addProductToWishlist(@RequestBody ProductWishlist productWishlist,
                                      @PathVariable int id, Principal principal) {
-        int userId = userDao.findIdByUsername(principal.getName() );
+        int userId = userDao.findIdByUsername( principal.getName() );
         if (!wishlistDao.doesUserOwnWishlist(userId, productWishlist.getWishlistId())
                 || id != productWishlist.getWishlistId()) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Access to wishlist denied");
