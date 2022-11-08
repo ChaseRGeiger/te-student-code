@@ -3,8 +3,22 @@ body{
     color: orange;
 }
 
-img{
-    width: 500px;
+header{
+    text-align: center;
 }
 
+img{
+    width: 400px;
+}
 
+a{
+    color: orange;
+}
+
+h2{
+    text-decoration-line: underline;
+}
+
+q{
+    font-style: italic;
+}
