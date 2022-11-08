@@ -1,0 +1,19 @@
+body{
+    font-family: 'Poor Story', cursive;
+    background-color: yellow;
+}
+
+h1{
+    font-size: 40px;
+    color: cornflowerblue;
+}
+
+p{
+    font-size: 18px;
+    color: #f500ac;
+}
+
+img{
+    height: 200px;
+    width: 350px;
+}
