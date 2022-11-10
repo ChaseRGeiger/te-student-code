@@ -23,12 +23,13 @@ div#two {
     /* height: 150px;
     line-height: 150px; */
 
-
-    /* flex-basis: 25%;
+/* 
+    flex-basis: 25%;
     flex-grow: 2; */
 
     /* flex-basis: 33%;
     flex-shrink: 6; */
+
 }
 
 div#three {
