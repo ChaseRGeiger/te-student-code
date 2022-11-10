@@ -1,0 +1,161 @@
+body{
+    background-color: plum;
+}
+
+#container1{
+    height: 250px;
+    background-color: white;
+    position: relative;
+    display: flex;
+}
+
+#container1 > #box1 {
+    flex-grow: 1;
+}
+
+#container1 > #box2 {
+   flex-grow: 2;
+}
+
+#container1 > #pig {
+    height: 200px;
+    width: 100px;
+    z-index: 1;
+}
+
+
+#container2{
+    position: relative;
+    height: 225px;
+    background-color: lightgray;
+    display: flex;
+}
+
+#container2 > #pig  {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 100px;
+    width: 100px;
+}
+
+
+#container3{
+    position: relative;
+    height: 225px;
+    background-color:white;
+    display: flex;
+}
+
+#container3 > #pig {
+    position: absolute;
+   bottom: 50px;
+   left: 45%;
+    height: 100px;
+    width: 100px;
+}
+
+#container4{
+    height: 200px;
+    background-color: lightgray;
+    display: flex;
+   
+    
+}
+
+#container5{
+    height: 150px;
+    background-color: white;
+    display: flex;
+   
+}
+
+#container5 > :nth-child(1){
+    font-size: 50px;
+    
+}
+
+#container5 > :nth-child(2){
+    font-size: 16px;
+    
+}
+
+#container5 > :nth-child(3){
+    font-size: 9px;
+    
+}
+
+
+#container6{
+    height: 500px;
+    background-color: lightgray;
+    display: flex;
+    flex-direction: row;
+    /*note how all the boxes are squished into one row*/
+    
+    
+}
+
+#container7{
+    height: 150px;
+    background-color:white;
+    display: flex;
+    flex-direction: row;
+}
+
+  /*Order position is relative to another 
+    flexbox item having the order rule*/
+
+#container7 > #pig {
+    /* order: 3; */
+}
+
+#container7 > #box1 {
+    /* order: 1; */
+}
+
+#bird {
+    width: 100%;
+    
+}
+
+#pig > img {
+    width: 100%;
+}
+
+#box1{
+    height: 100px;
+    width: 100px;
+    font-size: 50px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+    z-index: 3;
+}
+
+#box2{
+    height: 150px;
+    width: 100px;
+    font-size: 50px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+}
+
+#box3{
+    height: 100px;
+    width: 100px;
+    font-size: 50px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+}
+.box4{
+    height: 200px;
+    width: 100px;
+    font-size: 50px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+}
+

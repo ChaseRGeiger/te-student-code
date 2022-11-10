@@ -1,0 +1,98 @@
+
+/* Flexbox rules go in the parent container CSS */
+section#flex-example {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+
+div#one {
+    /* height: 75px;
+    line-height: 50px; */
+
+    /* flex-basis: 25%; */
+
+
+    /* flex-basis: 33%;
+    flex-shrink: 1; */
+}
+
+div#two {
+    /* height: 150px;
+    line-height: 150px; */
+
+
+    /* flex-basis: 25%;
+    flex-grow: 2; */
+
+    /* flex-basis: 33%;
+    flex-shrink: 6; */
+}
+
+div#three {
+
+    
+    /* flex-basis: 25%; */
+
+
+    /* flex-basis: 33%;
+    flex-shrink: 1; */
+
+
+}
+
+
+
+/*
+* Styles below this are not related to flexbox
+*/
+
+section#flex-example {
+    position: relative;
+    top: 50px;
+    height: 65%;
+    width: 75%;
+    background-color: teal;
+    border: 2px black solid;
+    margin: auto;
+}
+
+#flex-example div {
+    width: 100px;
+    margin: 10px;
+    text-align: center;
+    color: black;
+    line-height: 100px;
+    background-color: lightgray;
+    border: 3px black solid;
+    font-size: 3rem;
+}
+
+#flex-description {
+    position: relative;
+    top: 100px;
+    width: 80%;
+    margin: auto;
+    display: flex;
+}
+
+#flex-description  div  img {
+    width: 100%;
+    display: block;
+
+}
+
+#flex-description div {
+    width: 50%;
+}
+#flex-description div:first-child {
+    margin-right: 50px;
+}
+
+#flex-description h1 {
+    text-align: center;
+    text-transform: lowercase;
+    color: blue;
+}
