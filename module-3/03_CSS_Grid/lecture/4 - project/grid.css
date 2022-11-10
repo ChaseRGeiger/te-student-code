@@ -1,0 +1,63 @@
+div.container{
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-areas: 
+    "header header header"
+    "nav main upcoming-events"
+    "footer footer footer";
+    height: 100vh;
+    gap: 10px;
+}
+
+.container header{
+    grid-area: header;
+}
+
+.container nav#menu-nav{
+    grid-area: nav;
+}
+
+.container main{
+    grid-area: main;
+}
+
+.container aside#upcoming-events{
+    grid-area: upcoming-events;
+}
+
+.container footer{
+    grid-area: footer;
+}
+
+@media (max-width: 768px){
+    div.container{
+        grid-template-columns: 200px 1fr;
+        grid-template-areas: 
+            "header header"
+            "nav main"
+            "upcoming-events upcoming-events"
+            "footer footer";
+    }
+
+    img{
+        width: 25%;
+    }
+}
+
+@media(max-width: 320px){
+    div.container{
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "header"
+            "nav"
+            "main"
+            "upcoming-events"
+            "footer";
+    }
+}
+
+@media(max-width: 200px){
+    img{
+        display: none;
+    }
+}

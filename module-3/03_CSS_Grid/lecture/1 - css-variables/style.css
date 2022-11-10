@@ -1,33 +1,36 @@
-
+:root{
+    --text-color: red;
+    --element-width: 50vw;
+}
 h1 {
     color: blue;
 }
 
 section h2 {
     background-color: yellow;
-    color: green;
-    width: 50vw;
+    color: var(--text-color);
+    width: var(--element-width);
 }
 
 section > p {
-    color: green;
+    color: var(--text-color);
     font-size: 1.5rem;
-    width: 50vw;
+    width: var(--element-width);
 }
 
 section > div {
-    color: green;
+    color: var(--text-color);
     font-size: 1.75rem;
     border: 1px solid black;
     padding: 10px;
-    width: 50vw;
+    width: var(--element-width);
 }
 
 section > div > p {
     color: teal;
     background-image: linear-gradient(lightblue, pink);
     padding: 5px;
-    width: 50vw;
+    width: var(--element-width);
 }
 
 
