@@ -1,11 +1,74 @@
 /* Grid CSS goes here */
 
+body {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    grid-template-areas: 
+        "header header"
+        "main aside"
+        "footer aside";
+}
 
+main {
+    grid-area: main;
+}
 
+header {
+    grid-area:header;
+}
 
+aside {
+    grid-area: aside;
+}
+
+footer {
+    grid-area: footer;
+}
+
+header section#topheader {
+    display: grid;
+    grid-template-columns: 1fr 100px;
+    grid-template-rows: 50px 1fr;
+    grid-template-areas:
+        "date ribbon"
+        "hype ribbon"
+}
+
+section#topheader div.date {
+    grid-area: date;
+}
+
+section#topheader div.hype {
+    grid-area: hype;
+}
+
+section#topheader div.ribbon {
+    grid-area: ribbon;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "lead lead"
+        "one two";
+    gap: 20px;
+}
+
+main article.articleone {
+    grid-area: lead;
+}
+
+main article.articletwo {
+    grid-area: one;
+}
+
+main article.articlethree {
+    grid-area: two;
+}
 
 /* Don't change anything below this comment */
-
+ 
 
 html {
     height: 100%;
