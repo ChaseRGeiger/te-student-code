@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  display: flex;
   /* Photo by Andre Furtado on Unsplash */
   background: url(../img/andre-furtado-JtV6zyOZSrA-unsplash.jpg) left / cover no-repeat;
 }
@@ -16,9 +17,25 @@ ul.social-icons {
   padding: 0;
 }
 
-nav {}
+#left-panel{
+  display: flex;
+  flex-direction: column;
+  flex-basis: 35%;
+}
 
-#right-panel {}
+
+.social-icons{
+  display: flex;
+  justify-content: space-between;
+}
+
+#right-panel{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 1;
+}
+
 
 /* YOU WON'T NEED TO CHANGE ANY STYLES BELOW THIS LINE */
 
