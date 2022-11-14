@@ -1,3 +1,14 @@
+const thisVariableIsInGlobalScope = 0;
+
+{
+  const thisVariableIsInBlockScope = 0;
+}
+
+function myFunc() {
+  const thisVariableInInFunctionScope = 0;
+}
+
+
 /*
     Example of a multi-line comment just like in C#/Java
 */
@@ -10,8 +21,19 @@
  */
 function variables() {
   // Declares a variable where the value cannot be changed
+  const daysPerWeek = 7;
+  console.log(`There are ${daysPerWeek} days in the week`);
+
   // Declares a variable those value can be changed
+  let daysPerMonth = 30;
+  console.log(`There are ${daysPerMonth} days in the month`);
+
   // Declares a variable that will always be an array
+  const weekdays = [ 'Monday', 'Tuesday', 
+    "Wednesday", "Thursday", 
+    'Friday', `Saturday`, 'Sunday'];
+  console.log(weekdays);
+  console.table(weekdays);
 }
 
 /**
@@ -70,14 +92,27 @@ function objects() {
       "Milton Waddams",
       "Samir Nagheenanajar",
       "Michael Bolton"
-    ]
+    ],
+    toString: function() {
+      return `${this.lastName}, ${this.firstName} (${this.age})`;
+    }
   };
 
   // Log the object
-
+  console.table(person);
   // Log the first and last name
-
+  console.log(`${person.firstName} ${person.lastName}`);
+  console.log(`${person['firstName']} ${person['lastName']}`);
+  // If the property name does not exist (like if it is mispelled) it is added
+  person.firstname = 'John';
+  console.table(person); 
   // Log each employee
+  for (let i = 0; i < person.employees.length; i++) {
+    console.log(`Employee ${i+ 1} is ${person.employees[i]}`);
+  }
+
+  console.log(person.toString());
+  console.log(person.toString); // If no () on a function the the code is printed
 }
 
 /*
@@ -113,6 +148,14 @@ function mathFunctions() {
   console.log("Math.floor(1.99) : " + Math.floor(1.99));
   console.log("Math.ceil(1.01) : " + Math.ceil(1.01));
   console.log("Math.random() : " + Math.random());
+
+  console.log(parseFloat('1.5') + 5);
+  console.log(parseInt('5.5')); // parseInt truncates
+  console.log(`1 is a not number: ${ isNaN(1) }`);
+  console.log(`'1' is not a number: ${ isNaN('1') }`);
+  console.log(`A is not a number: ${ isNaN('A') }`);
+  console.log(`1/0 is not a number: ${ isNaN(1/0) }`);
+  console.log(`0/0 is not a number: ${ isNaN(0/0) }`);
 }
 
 /*
@@ -129,6 +172,8 @@ function stringFunctions(value) {
   console.log(`.startsWith('Hello') - ${value.startsWith("Hello")}`);
   console.log(`.indexOf('Hello') - ${value.indexOf("Hello")}`);
 
+  console.log(`.substr(1,3) - ${ value.substr(1, 3) }`);
+  console.log(`.substring(1,3) - ${ value.substring(1, 3) }`);
   /*
     Other Methods
         - split(string)
