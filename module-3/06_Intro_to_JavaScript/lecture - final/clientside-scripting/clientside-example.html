@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Why Client side Scripting?</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('jsform').addEventListener('submit', (e) => {
+                const name = document.getElementById('jsname').value;
+                document.getElementById('result').innerText = `Hello ${name}, your form was submitted!`;
+                e.preventDefault();
+            });
+        });
+    </script>
+    <style>
+        div {
+            margin-top: 20px;
+            padding: 25px;
+        }
+        p#result {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p>
+            This form uses a traditional submit!
+        </p>
+        <form action="result.html">
+            <label for="name">Name: </label>
+            <input type="text" name="name">
+            <input type="submit" value="Traditional Submit">
+        </form>
+    </div>
+    <div>
+        <p>
+            This form uses a client side scripting to submit!
+        </p>
+        <form id="jsform">
+            <label for="name">Name: </label>
+            <input type="text" name="name" id="jsname">
+            <input type="submit" value="Submit with JS">
+        </form>
+        <p id="result"></p>
+    </div>
+</body>
+</html>
