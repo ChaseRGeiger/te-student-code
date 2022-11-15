@@ -13,6 +13,14 @@
         }
 */
 
+function sumDouble(x, y){
+	if(x === y){
+		return (x + y) * 2;
+	}
+
+	return x + y;
+}
+
 /*
 2. **hasTeen** We'll say that a number is "teen" if it is in the range 13..19 inclusive. 
     Given 3 int values, return true if 1 or more of them are teen.
@@ -22,6 +30,10 @@
 		hasTeen(20, 10, 13) → true
 */
 
+function hasTeen(x, y, z){
+	return (x >= 13 && x <= 19) || (y >= 13 && y <= 19) || (z >= 13 && z <= 19);
+}
+
 /* 
 3. **lastDigit** Given two non-negative int values, return true if they have the same 
     last digit, such as with 27 and 57.
@@ -30,6 +42,7 @@
 		lastDigit(6, 17) → false
 		lastDigit(3, 113) → true
 */
+
 
 /*
 4. **seeColor** Given a string, if the string begins with "red" or "blue" return that color 

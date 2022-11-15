@@ -10,8 +10,17 @@
  */
 function variables() {
   // Declares a variable where the value cannot be changed
+  const daysPerWeek = 7;
+  console.log(`There are ${daysPerWeek} days in a week`);
+
   // Declares a variable those value can be changed
+  let daysPerMonth = 30;
+  console.log(`There are ${daysPerMonth} days in a month`)
+
   // Declares a variable that will always be an array
+  const weeekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  console.log(weeekdays)
+
 }
 
 /**
@@ -72,6 +81,10 @@ function objects() {
       "Michael Bolton"
     ]
   };
+
+  const {firstName, lastName, age} = person;
+
+  console.log(`${lastName}, ${firstName} is ${age} years old and is a great person`)
 
   // Log the object
 
