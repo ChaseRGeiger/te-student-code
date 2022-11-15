@@ -1,5 +1,6 @@
 ﻿/*
-1. **sumDouble** Given two int values, return their sum. Unless the two values are the 
+1. **sumDouble** Given two int values, return their sum. 
+	Unless the two values are the 
     same, then return double their sum.
 
 		sumDouble(1, 2) → 3
@@ -12,6 +13,13 @@
 			return x + y;
         }
 */
+function sumDouble(x, y) {
+	if (x === y) {
+		return (x + y) *2;
+	}
+	return x + y;
+
+}
 
 /*
 2. **hasTeen** We'll say that a number is "teen" if it is in the range 13..19 inclusive. 
@@ -21,7 +29,9 @@
 		hasTeen(20, 19, 10) → true
 		hasTeen(20, 10, 13) → true
 */
-
+function hasTeen(x, y , z) {
+	return (x >= 13 && x <= 19) || (y >= 13 && y <= 19) || (z >= 13 && z <= 19);
+}
 /* 
 3. **lastDigit** Given two non-negative int values, return true if they have the same 
     last digit, such as with 27 and 57.
