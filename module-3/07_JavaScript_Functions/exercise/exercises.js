@@ -29,6 +29,10 @@
  */
 let unfilteredArray = [1, 2, 3, 4, 5, 6];
 
+function useParameterToFilterArray(filterFunction){
+    return unfilteredArray.filter(filterFunction)
+}
+
 /**
  * Write a function called makeNumber that takes two strings
  * of digits, concatenates them together, and returns

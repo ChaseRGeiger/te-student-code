@@ -28,6 +28,10 @@ function printToConsole(value) {
  * @param {number} secondParameter the second parameter to multiply
  */
 
+function multiplyTogether(x, y){
+  return x * y;
+}
+
 /**
  * This version makes sure that no parameters are ever missing. If
  * someone calls this function without parameters, we default the
@@ -38,6 +42,10 @@ function printToConsole(value) {
  * @param {number} [firstParameter=0] the first parameter to multiply
  * @param {number} [secondParameter=0] the second parameter to multiply
  */
+
+function multiplyNoUndefined(x = 0, y = 0){
+  return x * y;
+}
 
 
  
@@ -87,6 +95,20 @@ function scopeTest() {
   }
 }
 
+
+/**
+ * 
+ * Take the details of a person and create an English readable sentence
+ * that uses that information to describe them. the quirks will be joined
+ * together at the end of the sentence using the seperator provided,
+ * or ', ' by default.
+ * 
+ * @param {string} name the name of the person described
+ * @param {number} age the age of the person being described
+ * @param {string[]} [listOfQuirks = []] listOfQuirks a list of funny quirks about the person being described 
+ * @param {string} [seperator=', '] separator the string separating the quirks
+ * @returns {string} the full descriptive string that describes the person
+ */
 function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') {
   let description = `${name} is currently ${age} years old. Their quirks are: `;
   return description + listOfQuirks.join(separator);

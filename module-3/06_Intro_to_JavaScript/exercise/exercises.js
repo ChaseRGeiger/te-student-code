@@ -42,7 +42,14 @@ function hasTeen(x, y, z){
 		lastDigit(6, 17) → false
 		lastDigit(3, 113) → true
 */
-
+const lastDigit = (x, y) =>{
+	const lastNumArr = Array.from(y.toString()).map(Number);
+	const lastDigit = lastNumArr[lastNumArr.length - 1];
+	if(x === lastDigit){
+		return true;
+	}
+	return false;
+}
 
 /*
 4. **seeColor** Given a string, if the string begins with "red" or "blue" return that color 
@@ -53,6 +60,17 @@ function hasTeen(x, y, z){
         seeColor("blueTimes") → "blue"
 */
 
+const seeColor = str =>{
+	if (str.substr(0,3) === 'red'){
+		return 'red';
+	}
+	if(str.substr(0,4) === 'blue'){
+		return 'blue';
+	}
+
+	return '';
+}
+
 /*
 5. **oddOnly** Write a function that given an array of integer of any length, removes
     the even numbers, and returns a new array of just the the odd numbers.
@@ -60,6 +78,10 @@ function hasTeen(x, y, z){
 		oddOnly([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) → [1, 3, 5, 7, 9, 11];
 		oddOnly([2, 4, 8, 32, 256]); → []
 */
+
+const oddOnly = numArr => numArr.filter(currentValue => (!(currentValue % 2 === 0)))
+
+
 
 /*
 6. **frontAgain** Given a string, return true if the first 2 chars in the string also appear 
@@ -69,6 +91,14 @@ function hasTeen(x, y, z){
 		frontAgain("edit") → false
 		frontAgain("ed") → true
 */
+
+const frontAgain = str =>{
+	const firstTwoCharacters = str.substr(0,2);
+	if(firstTwoCharacters === str.substr(str.length - 2)){
+		return true;
+	}
+	return false;
+}
 
 /*
 7. **cigarParty** When squirrels get together for a party, they like to have cigars. 
@@ -81,6 +111,17 @@ or false otherwise.
 		cigarParty(50, false) → true
 		cigarParty(70, true) → true
 */
+
+const cigarParty = (num, isWeekend) =>{
+	if(num >= 40 && isWeekend){
+		return true;
+	}
+	if(num >= 40 && num <= 60){
+		return true;
+	}
+
+	return false;
+}
 
 /*
 8. **fizzBuzz** Given a number, return a value according to the following rules:
@@ -96,6 +137,20 @@ In all other cases return the original number.
 	fizzBuzz(8) → 8
 */
 
+const fizzBuzz = num =>{
+	if(num % 5 === 0 && num % 3 === 0){
+		return "FizzBuzz";
+	}
+	if(num % 3 === 0){
+		return "Fizz";
+	}
+	if(num % 5 === 0){
+		return "Buzz";
+	}
+
+	return num;
+}
+
 /*
 9. **filterEvens** Write a function that filters an array to only include even numbers.
 
@@ -105,6 +160,8 @@ In all other cases return the original number.
 	filterEvens([100, 8, 21, 24, 62, 9, 7]) → [100, 8, 24, 62]
 */
 
+const filterEvens = arr => arr.filter(currentValue => currentValue % 2 === 0)
+
 /*
 10. **filterBigNumbers** Write a function that filters numbers greater than or equal to 100.
 
@@ -113,6 +170,8 @@ In all other cases return the original number.
 	filterBigNumbers([]) → []
 */
 
+const filterBigNumbers = arr => arr.filter(currentValue => currentValue >= 100)
+
 /*
 11. **filterMultiplesOfX** Write a function to filter numbers that are a multiple of a 
 parameter, `x` passed in.
@@ -120,6 +179,10 @@ parameter, `x` passed in.
 	filterMultiplesOfX([3, 5, 1, 9, 18, 21, 42, 67], 3) → [3, 9, 18, 21, 42]
 	filterMultiplesOfX([3, 5, 10, 20, 18, 21, 42, 67], 5) → [5, 10, 20]
 */
+
+const filterMultiplesOfX = (arr, num) =>{
+	return arr.filter(currentValue => currentValue % num === 0);
+}
 
 /*
 12. **createObject** Write a function that creates an object with a property called 
@@ -133,3 +196,13 @@ firstName, lastName, and age. Populate the properties with your values.
 		age
 	}
 */
+
+function createObject(){
+	const person = {
+		firstName: "Chase",
+		lastName: "Geiger",
+		age: 21
+	};
+
+	return person;
+}
