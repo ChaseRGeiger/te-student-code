@@ -189,3 +189,34 @@ function findIndexExample() {
     const foundValue = fizzArr.findIndex( currentElement => currentElement === 9 );
     console.log(foundValue);
 }
+
+/**
+ * 
+ * @param {Object} person an object describing a person
+ */
+function thisTakesAnObject(person) {
+
+}
+
+function findMin() {
+    const arr = [12, 205, 3, 42, 58];
+    const reducedValue = arr.reduce( (currentMin, currentValue) => {
+        if (currentValue < currentMin) {
+            return currentValue;
+        } else {
+            return currentMin;
+        }
+    });
+    console.log("Min: " + reducedValue);
+}
+
+
+// int accumulator = arr[0];
+
+// for (int i = 1; i < arr.length; i++) {
+//     accumulator = getNextValue(accumulator, arr[i];)
+// }
+
+// public int getNextValue(int accumulator, int currentValue) {
+//     return accumulator + currentValue;
+// }
