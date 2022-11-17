@@ -134,7 +134,7 @@ function handleFormEvents() {
         const numberSubmitted = document.querySelector('input[name=number]').value;
         document.querySelector('.formresult').innerText = `You submitted ${numberSubmitted}`;
         // If the form should not continue with the submission, eventObj.preventDefault() will stop it.
-        //e.preventDefault();
+        e.preventDefault();
     });
 }
 
@@ -151,7 +151,7 @@ function handleEventPropagationDemo() {
    });
    childDiv.addEventListener('click', (e) => {
        childDiv.style.backgroundColor = "Green";
-       //e.stopPropagation();
+       e.stopPropagation();
    });
 }
 
