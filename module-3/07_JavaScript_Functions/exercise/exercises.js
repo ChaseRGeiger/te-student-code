@@ -20,6 +20,14 @@
  * @returns {boolean} true if they are admitted
  */
 
+const isAdmitted = (gpa, satScore=0, recommendation=false) =>{
+    if((gpa > 4.0) || (satScore > 1300) || (gpa > 3.0 && recommendation) || (satScore > 1200 && recommendation)){
+        return true;
+    }
+
+    return false;
+}
+
 /**
  * Write a function called useParameterToFilterArray that accepts a filter function
  * as a parameter. Use this function to filter unfilteredArray and return the result.
@@ -46,6 +54,11 @@ function useParameterToFilterArray(filterFunction){
  * @returns {number} the resultant number
  */
 
+const makeNumber = (first, second='') =>{
+    let numStr = first + second;
+    return Number(numStr);
+}
+
 /**
  * Write a function called addAll that takes an unknown number of parameters
  * and adds all of them together. Return the sum.
@@ -54,11 +67,26 @@ function useParameterToFilterArray(filterFunction){
  * @returns {number} the sum of all the parameters (or arguments)
  */
 
+const addAll = (...num) =>{
+    let sum = 0;
+    num.reduce((sum, currentValue) =>{
+        sum += currentValue;
+    }, 0);
+
+    return sum;
+}
+
 /*
  * Write and document a function called makeHappy that takes
  * an array and prepends 'Happy ' to the beginning of all the
  * words and returns them as a new array. Use the `map` function.
  */
+/**
+ * @param {String[]} array initial array of strings that will have the word 'Happy ' added onto them
+ * @returns {String[]} final array with the word 'Happy ' added onto the beginning of each word
+ */
+
+const makeHappy = array => array.map(currentValue => 'Happy ' + currentValue);
 
 /*
  * Write and document a function called getFullAddressesOfProperties
@@ -80,6 +108,17 @@ function useParameterToFilterArray(filterFunction){
  *
  * Use `map` and an anonymous function.
  */
+/**
+ * @param {Object[]} address an array of street addresses
+ * @returns {String[]} returns an array of strings built from the address objects
+ */
+
+const getFullAddressesOfProperties = address =>{
+    address.map(currentValue =>{
+        let {streetNumber, streetName, streetType, city, state, zip} = currentValue;
+        return `${streetNumber} ${streetName} ${streetType} ${city} ${state} ${zip}`;
+    })
+}
 
 /** 
  * Write and document a function called findLargest that uses `forEach`
@@ -95,6 +134,22 @@ function useParameterToFilterArray(filterFunction){
  * @param {number[]|string[]} searchArray the array to search
  * @returns {number|string} the number or string that is largest
  **/
+
+const findLargest = searchArray =>{
+    searchArray.forEach((currentLargest, currentValue) =>{
+        if(typeof searchArray == Number){
+            if(currentValue > currentLargest){
+                currentLargest = currentValue;
+            }
+        }
+        else{
+            searchArray.sort();
+            currentLargest = searchArray[0];
+        }
+
+        return currentLargest;
+    })
+}
 
 
 /*
