@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Events!</title>
+    <link rel="stylesheet" href="events.css">
+    <script src="events.js"></script>
+</head>
+<body>
+    <main>
+        <h1>Events!!</h1>
+        <section>
+            <h2>Mouse Events</h2>
+            <div class="events">
+                <div >
+                    <h3>click</h3>
+                    <div id="clickdiv" class="box"></div>
+                </div>
+                <div>
+                    <h3>dblclick</h3>
+                    <div id="dblclickdiv" class="box"></div>
+                </div>
+                <div>
+                    <h3>down</h3>
+                    <div id="mousedowndiv" class="box"></div>
+                </div>
+                <div >
+                    <h3>Enter & Leave</h3>
+                    <div id="mouseenterdiv" class="box"></div>
+                </div>
+            </div>  
+        </section>
+        <section>
+            <h2>Keyboard Events</h2>
+            <div class="events">
+                <div >
+                    <h3>keydown</h3>
+                    <textarea id="keydownInput"></textarea>
+                </div>
+                <div >
+                    <h3>keyup</h3>
+                    <textarea id="keyupInput"></textarea>
+                </div>
+                <div>
+                    <h3>keypress</h3>
+                    <textarea id="keypressInput"></textarea>
+                </div>
+            </div>  
+        </section>
+        <section>
+                <h2>Form Events</h2>
+                <div class="events">
+                    <div >
+                        <h3>change</h3>
+                        <input type="checkbox" id="checkboxchange">
+                        <select id="selectchange">
+                            <option value="one">One</option>
+                            <option value="two">Two</option>
+                            <option value="three">Three</option>
+                        </select>
+                        <div id="changeResult">
+
+                        </div>
+                    </div>
+                    <div >
+                        <h3>focus</h3>
+                        <input type="text" id="focusInput"></input>
+                    </div>
+                    <div>
+                        <h3>blur</h3>
+                        <input type="text" id="blurInput"></input>
+                    </div>
+                    <div>
+                        <h3>submit</h3>
+                        <form id="formsubmit" action="/goesnowhere">
+                            <label for="number">Number:</label>
+                            <input type="number" id="number" name="number"></input>
+                            <div>
+                                <input type="submit">
+                            </div>
+                        </form>
+                        <div class="formresult"></div>
+                    </div>
+                </div>  
+            </section>
+            <section>
+                <h2>Event Propagation</h2>
+                <div class="events">
+                    <div class="parentdiv">
+                        <div class="childdiv"></div>
+                    </div>
+                </div>  
+            </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,28 @@
+main {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+input[type=button] {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    background-color: red;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+p {
+    font-size: 2rem;
+    font-weight: 600;
+    color: whitesmoke;
+}
+
+body {
+    background-image: url("img/metal_texture.jpg");
+    background-color: lightslategray;
+    background-size: 100%;
+}
