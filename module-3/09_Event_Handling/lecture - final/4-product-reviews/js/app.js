@@ -59,12 +59,46 @@ function displayReview(review) {
 
 // LECTURE STARTS HERE ---------------------------------------------------------------
 
-// Set the product reviews page title.
-setPageTitle();
-// Set the product reviews page description.
-setPageDescription();
-// Display all of the product reviews on our page.
-displayReviews();
+document.addEventListener('DOMContentLoaded', () => {
+  // Set the product reviews page title.
+  setPageTitle();
+  // Set the product reviews page description.
+  setPageDescription();
+  // Display all of the product reviews on our page.
+  displayReviews();
+
+  handleTitleTextEvents();
+
+  document.getElementById("btnToggleForm").addEventListener('click', () => {
+    showHideForm();
+  });
+
+  document.querySelector('div#main > form').addEventListener('submit', (event) => {
+    saveReview();
+    event.preventDefault();
+  });
+});
+
+function handleTitleTextEvents() {
+  const desc = document.querySelector('p.description');
+  desc.addEventListener('click', (event) => {
+    toggleDescriptionEdit(event.target);
+  });
+
+  const inputField = document.getElementById('inputDesc');
+  inputField.addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') {
+      exitDescriptionEdit(event.target, true);
+    }
+    if (event.key === 'Escape') {
+      exitDescriptionEdit(event.target, false);
+    }
+  });
+
+  inputField.addEventListener('mouseleave', (event) => {
+    exitDescriptionEdit(event.target, false);
+  });
+}
 
 /**
  * Hide the description and show the text box.
@@ -129,4 +163,21 @@ function resetFormValues() {
 /**
  * Save the review that was added using the add review form.
  */
-function saveReview() {}
+function saveReview() {
+  const name = document.getElementById('name').value;
+  const title = document.getElementById('title').value;
+  const review = document.getElementById('review').value;
+  const rating = document.getElementById('rating').value;
+
+  const newReview =  {
+    reviewer: name,
+    title: title,
+    review: review,
+    rating: rating
+  };
+
+  reviews.push(newReview);
+  displayReview(newReview);
+  showHideForm();
+
+}
