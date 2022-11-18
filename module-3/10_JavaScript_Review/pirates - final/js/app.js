@@ -10,17 +10,19 @@ document.addEventListener('DOMContentLoaded', () => {
     createGrid();
 
     document.querySelector('body').addEventListener('keyup', (event) => {
-        if (event.key.toLowerCase() === 'd') {
-            moveShipRight();
-        }
-        if (event.key.toLowerCase() === 'a') {
-            moveShipLeft();
-        }
-        if (event.key.toLowerCase() === 's') {
-            moveShipDown();
-        }
-        if (event.key.toLowerCase() === 'w') {
-            moveShipUp();
+        if (getShipLocation()) {
+            if (event.key.toLowerCase() === 'd') {
+                moveShipRight();
+            }
+            if (event.key.toLowerCase() === 'a') {
+                moveShipLeft();
+            }
+            if (event.key.toLowerCase() === 's') {
+                moveShipDown();
+            }
+            if (event.key.toLowerCase() === 'w') {
+                moveShipUp();
+            }
         }
     });
 
@@ -112,6 +114,8 @@ function win() {
     announce.classList.add('winText');
     announce.innerText = "You Win!";
     getShipLocation().classList.remove('boat');
+
+    clearInterval(clock);
 }
 
 
@@ -137,6 +141,8 @@ function lose(message) {
         ship.classList.remove('boat_explosion');
         ship.classList.add('boat_sunk')
     }, 300);
+
+    clearInterval(clock);
 }
 
 
@@ -159,6 +165,9 @@ function resetGame() {
     // Inform the player they can start
     document.querySelector('section h1.announce').innerText = 'Play!';
     document.querySelector('section h1.announce').classList.remove('winText');
+
+    // Start the clock so the pirates move
+    clock = setInterval(runTick, 1000);
 }
 
 function resetBoat() {
@@ -263,7 +272,49 @@ function addObstacles(cell) {
 /*
   Move the Pirates
 */
+function runTick() {
+    const pirates = document.querySelectorAll('.pirate');
 
+    pirates.forEach( pirate => {
+        const rand = getRandomNumber(4, true);
+        const newLocation = getPirateNextLocation(pirate, directions[rand]);
+        if (isPirateWin(newLocation)) {
+            lose('You were sunk by a pirate');
+        } else if (canPirateMoveToElement(newLocation)) {
+            pirate.classList.remove('pirate');
+            newLocation.classList.add('pirate');
+        }
+    })
+}
+
+function getPirateNextLocation(pirate, direction) {
+    let newCell;
+
+    switch (direction) {
+        case 'up':
+            newCell = getElementAtSameIndex(pirate, pirate.parentElement.previousElementSibling);
+            break;
+        case 'down':
+            newCell = getElementAtSameIndex(pirate, pirate.parentElement.nextElementSibling); 
+            break;
+        case 'left':
+            newCell = pirate.previousElementSibling;
+            break;
+        case 'right':
+            newCell = pirate.nextElementSibling;
+            break
+    }
+
+    return newCell;
+}
+
+function isPirateWin(newLocation) {
+    return newLocation && newLocation.classList.contains('boat');
+}
+
+function canPirateMoveToElement(newLocation) {
+    return canMoveToNewLocation(newLocation) && !newLocation.classList.contains('treasure');
+}
 
 
 function getRandomNumber(top, zeroBased) {
