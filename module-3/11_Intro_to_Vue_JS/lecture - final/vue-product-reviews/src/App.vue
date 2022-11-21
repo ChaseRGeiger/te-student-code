@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <ProductReview />
+    <AddContacts />
   </div>
 </template>
 
 <script>
 import ProductReview from './components/ProductReview.vue'
+import AddContacts from './components/AddContacts.vue'
 
 export default {
   name: 'App',
   components: {
-    ProductReview
+    ProductReview,
+    AddContacts
   }
 }
 </script>

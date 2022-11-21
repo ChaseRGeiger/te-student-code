@@ -3,35 +3,42 @@
         <h2>Product Reviews for {{ name }}</h2>
         <p class="description">{{ description }}</p>
 
-        <div class="well-display">
+
+        <select v-model="showRatings">
+            <option v-bind:value="true">Show Ratings</option>
+            <option v-bind:value="false">Hide Ratings</option>
+        </select>
+
+        <div class="well-display" v-if="showRatings">
             <div class="well">
                 <span class="amount">{{ averageRating }}</span>
                 Average Rating
             </div>
-            <div class="well">
+            <div class="well" v-if="numberOfOneStarReviews > 0">
                 <span class="amount">{{numberOfOneStarReviews}}</span>
                 1 Star Review{{ numberOfOneStarReviews === 1 ? '' : 's' }}
             </div>
-            <div class="well">
+            <div class="well" v-if="numberOfTwoStarReviews > 0">
                 <span class="amount">{{numberOfTwoStarReviews}}</span>
                 2 Star Review{{ numberOfTwoStarReviews === 1 ? '' : 's' }}
             </div>
-            <div class="well">
+            <div class="well" v-if="numberOfThreeStarReviews > 0">
                 <span class="amount">{{numberOfThreeStarReviews}}</span>
                 3 Star Review{{ numberOfThreeStarReviews === 1 ? '' : 's' }}
             </div>
-            <div class="well">
+            <div class="well" v-if="numberOfFourStarReviews > 0">
                 <span class="amount">{{numberOfFourStarReviews}}</span>
                 4 Star Review{{ numberOfFourStarReviews === 1 ? '' : 's' }}
             </div>
-            <div class="well">
+            <div class="well" v-if="numberOfFiveStarReviews > 0">
                 <span class="amount">{{numberOfFiveStarReviews}}</span>
                 5 Star Review{{ numberOfFiveStarReviews === 1 ? '' : 's' }}
             </div>
         </div>
 
 
-        <div class="review" v-for="review in reviews" v-bind:key="review.id">
+        <div class="review" v-bind:class="{ favorited: review.favorited }"
+            v-for="review in reviews" v-bind:key="review.id">
             <h4>{{ review.reviewer }}</h4>
             <div class="rating">
                 <img src="../assets/star.png" v-for="n in review.rating" v-bind:key="n" class="ratingStar"
@@ -39,6 +46,7 @@
             </div>
             <h3>{{ review.title }}</h3>
             <p>{{ review.review }}</p>
+            <p>Favorite? <input type="checkbox" v-model="review.favorited"></p>
         </div>
     </div>
 </template>
@@ -51,6 +59,7 @@ export default {
         return {
             name: 'Cigar Parties for Dummies',
             description: 'Host and plan the perfect cigar party for all your squirrelly friends',
+            showRatings: true,
             reviews: [
                 {
                     reviewer: 'Malcolm Gladwell',
@@ -175,6 +184,10 @@ div.main div.review h3 {
 
 div.main div.review h4 {
     font-size: 1rem;
+}
+
+div.main div.review.favorited {
+    background-color: lightyellow;
 }
 
 </style>
