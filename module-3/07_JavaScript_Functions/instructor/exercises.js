@@ -113,3 +113,27 @@ function useParameterToFilterArray(filterFunction) {
  *
  * Read the tests to verify you have the correct behavior.
  */
+// function getSumOfSubArrayValues(arr) {
+//     if (arr) {
+//         return arr.reduce( (totalSum, innerArr) => {
+//             return totalSum + innerArr.reduce( (arrSum, x) =>{
+//                 return arrSum + x;
+//             }, 0);
+//         }, 0);
+//     }
+//     return 0;
+// }
+
+
+function getSumOfSubArrayValues(arrayOfArrays){
+        total = 0;
+        if(arrayOfArrays != null){
+            arrayOfArrays.forEach(element => {
+                sum = element.reduce((sum, number) => {
+                    return sum + number;
+                 }, 0);
+                 total += sum;
+            });
+        }
+        return total;
+    }
