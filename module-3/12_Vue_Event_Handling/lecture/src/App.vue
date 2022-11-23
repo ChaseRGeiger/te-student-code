@@ -1,16 +1,37 @@
 <template>
   <div id="app">
-    <product-review></product-review>
+    <button v-on:click="toggleDisplay()">{{buttonText}}</button>
+    <product-review v-if="showReviews"></product-review>
+    <event-delegation v-if="!showReviews"></event-delegation>
   </div>
 </template>
 
 <script>
 import ProductReview from "./components/ProductReview.vue";
+import EventDelegation from './components/EventDelegation.vue';
 
 export default {
   name: "app",
   components: {
-    ProductReview
+    ProductReview,
+    EventDelegation
+  },
+  data(){
+    return{
+      buttonText: "Show Event Delegation",
+      showReviews: true
+    }
+  },
+  methods: {
+    toggleDisplay(){
+      this.showReviews = !this.showReviews;
+      if(this.showReviews){
+        this.buttonText = "Show Event Delegation"
+      }
+      else{
+        this.buttonText = "Show Product Reviews"
+      }
+    }
   }
 };
 </script>
