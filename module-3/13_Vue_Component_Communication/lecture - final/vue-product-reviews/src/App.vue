@@ -1,24 +1,42 @@
 <template>
   <!-- add main class to div#app -->
-  <div id="app">
-    <product-reviews></product-reviews>
+  <div id="app" class="main">
 
     <!-- Title and Description -->
+    <h2>Product Reviews for {{ $store.state.name }}</h2>
+    <p class="description">{{ $store.state.description }}</p>
+
     <!-- div.well-display -->
+    <div class="well-display">
       <!-- Average Summary -->
+      <AverageSummary />
       <!-- Star Summaries -->
+      <StarSummary rating="1" />
+      <StarSummary rating="2" />
+      <StarSummary rating="3" />
+      <StarSummary rating="4" />
+      <StarSummary rating="5" />
+    </div>
     <!-- Add Review -->
+    <AddReview />
     <!-- Review List -->
+    <ReviewList />
   </div>
 </template>
 
 <script>
-import ProductReviews from './components/ProductReviews.vue'
+import AverageSummary from './components/AverageSummary'
+import StarSummary from './components/StarSummary'
+import ReviewList from './components/ReviewList'
+import AddReview from './components/AddReview'
 
 export default {
   name: 'App',
   components: {
-    ProductReviews
+    AverageSummary,
+    StarSummary,
+    ReviewList,
+    AddReview
   }
 }
 </script>
