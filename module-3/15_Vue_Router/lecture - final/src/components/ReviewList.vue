@@ -18,7 +18,7 @@ export default {
   },
   computed: {
     filteredReviews() {
-      const activeProduct = this.$store.getters.products;
+      const activeProduct = this.$store.getters.product;
       const reviewsFilter = this.$store.state.filter;
       return activeProduct.reviews.filter(review => {
         return reviewsFilter === 0 ? true : reviewsFilter === review.rating;

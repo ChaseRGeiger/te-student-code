@@ -16,7 +16,7 @@ export default {
   },
   computed: {
     stars() {
-      const reviews = this.$store.getters.products.reviews;
+      const reviews = this.$store.getters.product.reviews;
       return reviews.reduce((currentCount, review) => {
         return currentCount + (review.rating === parseInt(this.rating) ? 1 : 0);
       }, 0);
