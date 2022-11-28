@@ -54,7 +54,7 @@
           <td>{{ user.emailAddress }}</td>
           <td>{{ user.status }}</td>
           <td>
-            <button class="btnEnableDisable">Enable or Disable</button>
+            <button class="btnEnableDisable" v-on:click="flipStatus(user.id)">{{ user.status == 'Active' ? 'Enabled' : 'Disabled' }}</button>
           </td>
         </tr>
       </tbody>
@@ -165,6 +165,10 @@ export default {
     };
   },
   methods: {
+    flipStatus(userId) {
+      const user = this.users.find( u => u.id == userId );
+      user.status = user.status === 'Active' ? 'Disabled' : 'Active';
+    },
     getNextUserId() {
       return this.nextUserId++;
     },
@@ -178,6 +182,7 @@ export default {
     }
   },
   computed: {
+
     filteredList() {
       let filteredUsers = this.users;
       if (this.filter.firstName != "") {
