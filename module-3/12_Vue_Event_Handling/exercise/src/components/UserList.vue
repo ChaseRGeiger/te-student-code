@@ -54,7 +54,7 @@
           <td>{{ user.emailAddress }}</td>
           <td>{{ user.status }}</td>
           <td>
-            <button class="btnEnableDisable">Enable or Disable</button>
+            <button class="btnEnableDisable" v-on:click="flipStatus(user.id)">{{user.status == 'Active' ? 'Disable' : 'Enable'}}</button>
           </td>
         </tr>
       </tbody>
@@ -96,6 +96,7 @@ export default {
   data() {
     return {
       selectedUserIDs: [],
+      showForm: false,
       filter: {
         firstName: "",
         lastName: "",
@@ -175,7 +176,11 @@ export default {
     },
     getNextUserId() {
       return this.nextUserId++;
-    }
+    },
+    flipStatus(userId){
+      const user = this.users.find(u => u.id == userId);
+      user.status = user.status === 'Active' ? 'Disabled' : 'Active'
+    },
   },
   computed: {
     filteredList() {
@@ -214,7 +219,8 @@ export default {
         );
       }
       return filteredUsers;
-    }
+    },
+    
   }
 };
 </script>
