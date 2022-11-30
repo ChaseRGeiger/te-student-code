@@ -20,16 +20,33 @@
         v-on:change="onFavoritedChange(review)"
       />
     </p>
+    <div>
+      <router-link tag="button" v-bind:to="{ name: 'confirm-delete', params: { reviewId: review.id }}">
+        Delete Review
+      </router-link>
+      <router-link tag="button" v-bind:to="{ 
+              name: 'add-review', 
+              params: {
+                  id: review.productId,
+                  reviewId: review.id
+              }
+          }">
+              Update Review
+      </router-link>
+    </div>
   </div>
 </template>
 
 <script>
+import ProductsService from '../services/ProductsService'
+
 export default {
   name: "review-display",
   props: ["review"],
   methods: {
     onFavoritedChange(review) {
-      this.$store.commit("FLIP_FAVORITED", review);
+      review.favorited = !review.favorited;
+      ProductsService.updateReview(review).catch(error => console.error(error));
     }
   }
 };
@@ -69,4 +86,15 @@ div.main div.review h3 {
 div.main div.review h4 {
   font-size: 1rem;
 }
+
+div.main div.review button {
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+div.main div.review button:hover {
+  cursor: pointer;
+}
+
 </style>
