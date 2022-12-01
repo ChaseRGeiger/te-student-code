@@ -6,8 +6,10 @@
 </template>
 
 <script>
+
 export default {
   name: "average-summary",
+  props: ['reviews'],
   methods: {
     updateFilter() {
       this.$store.commit("UPDATE_FILTER", 0);
@@ -15,14 +17,13 @@ export default {
   },
   computed: {
     averageRating() {
-      const reviews = this.$store.getters.product.reviews;
-      let sum = reviews.reduce((currentSum, review) => {
+      let sum = this.reviews.reduce((currentSum, review) => {
         return currentSum + review.rating;
       }, 0);
       if (sum === 0) {
         return 0;
       } else {
-        return (sum / reviews.length).toFixed(2);
+        return (sum / this.reviews.length).toFixed(2);
       }
     }
   }

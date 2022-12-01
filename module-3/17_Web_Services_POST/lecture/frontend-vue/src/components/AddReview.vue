@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import ProductsService from '../services/ProductsService'
 export default {
   name: "add-review",
   data() {
@@ -49,12 +50,20 @@ export default {
     addNewReview() {
       const productID = this.$route.params.id;
       this.newReview.productID = productID;
-      this.$store.commit("ADD_REVIEW", this.newReview);
-      // TODO: send the visitor back to the product page to see the new review
-      this.$router.push( { 
-        name: 'product-detail', 
-        params: { id: productID }
-      });
+
+      ProductsService.addReview(this.newReview, productID)
+        .then(response =>{
+          if(response.status == 201){
+            this.$router.push( { 
+              name: 'product-detail', 
+              params: { id: productID }
+            });
+          } else{
+            alert("Unexpected reponse returned: " + response.status + ' : ' + response.statusText);
+          }
+        })
+
+      
     },
     resetForm() {
       this.newReview = {};

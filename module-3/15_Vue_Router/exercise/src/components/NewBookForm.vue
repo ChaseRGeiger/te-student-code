@@ -22,13 +22,19 @@ export default {
     },
     methods: {
         saveBook() {
+            const isbn = this.$route.params.isbn;
+            this.book.isbn = isbn;
             this.$store.commit('SAVE_BOOK', this.book);
-            this.book = {
-                title: '',
-                author: '',
-                read: false,
-                isbn: ''
-            };
+            // this.book = {
+            //     title: '',
+            //     author: '',
+            //     read: false,
+            //     isbn: ''
+            // };
+            this.$router.push({
+                name: 'my-books',
+                params: {isbn: isbn}
+            });
         }
     }
 }

@@ -24,12 +24,14 @@
 </template>
 
 <script>
+import ProductsService from '../services/ProductsService'
 export default {
   name: "review-display",
   props: ["review"],
   methods: {
     onFavoritedChange(review) {
-      this.$store.commit("FLIP_FAVORITED", review);
+      review.favorited = !review.favorited;
+      ProductsService.updateReview(review).catch(error => console.error(error));
     }
   }
 };
