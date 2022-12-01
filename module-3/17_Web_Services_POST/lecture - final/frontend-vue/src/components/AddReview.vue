@@ -1,5 +1,5 @@
 <template>
-  <form v-on:submit.prevent="addNewReview">
+  <form v-on:submit.prevent="saveChanges">
     <div class="form-element">
       <label for="reviewer">Name:</label>
       <input id="reviewer" type="text" v-model="newReview.reviewer" />
@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import ProductsService from '../services/ProductsService'
+
 export default {
   name: "add-review",
   data() {
@@ -42,23 +44,58 @@ export default {
         rating: 0,
         review: "",
         favorited: false
-      }
+      },
+      reviewId: 0,
+      productID: 0
     };
   },
   methods: {
+    saveChanges() {
+      if (this.reviewId == 0) {
+        this.addNewReview();
+      } else {
+        this.updateReview();
+      }
+    },
+    updateReview() {
+      ProductsService.updateReview(this.newReview).then( (response) => {
+        if (response.status < 300) {
+            this.$router.push( { 
+              name: 'product-detail', 
+              params: { id: this.productID }
+            });
+        }
+      }).catch( error => console.error(error) );
+    },
     addNewReview() {
-      const productID = this.$route.params.id;
-      this.newReview.productID = productID;
-      this.$store.commit("ADD_REVIEW", this.newReview);
-      // TODO: send the visitor back to the product page to see the new review
-      this.$router.push( { 
-        name: 'product-detail', 
-        params: { id: productID }
-      });
+      this.newReview.productID = this.productID;
+      
+      ProductsService.addReview(this.newReview, this.productID)
+        .then(response => {
+          if (response.status == 201) {
+            this.$router.push( { 
+              name: 'product-detail', 
+              params: { id: this.productID }
+            });
+          } else {
+            alert("Unxpected response returned: " + response.status + " : " + response.statusText);
+          }
+        })
+      
+
     },
     resetForm() {
       this.newReview = {};
     }
+  },
+  created() {
+      this.productID = this.$route.params.id;
+      this.reviewId = Number(this.$route.params.reviewId);
+      if (this.reviewId > 0) {
+        ProductsService.getReviewById(this.reviewId).then( response => {
+          this.newReview = response.data;
+        })
+      }
   }
 };
 </script>

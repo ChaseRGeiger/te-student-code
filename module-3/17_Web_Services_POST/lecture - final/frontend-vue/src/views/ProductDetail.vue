@@ -1,5 +1,12 @@
 <template>
-  <div id="app" class="main">
+<div>
+    <div class="loading" v-if="isLoading">   
+        <img src="../assets/loading_icon.gif" alt="">
+    </div>
+    <div class="error" v-if="errorMessage">
+        Error: {{errorMessage}}
+    </div>
+  <div id="app" class="main" v-if="!isLoading">
       <h1>{{product.name}}</h1>
       <p class="description">{{ product.description }}</p>
       <div class="actions">
@@ -8,28 +15,31 @@
           <router-link v-bind:to="{ 
               name: 'add-review', 
               params: {
-                  id: product.id
+                  id: product.id,
+                  reviewId: 0
               }
           }">
               Add Review
           </router-link>
       </div>
       <div class="well-display">
-          <AverageSummary />
-          <StarSummary rating="1" />
-          <StarSummary rating="2" />
-          <StarSummary rating="3" />
-          <StarSummary rating="4" />
-          <StarSummary rating="5" />
+          <AverageSummary v-bind:reviews="product.reviews" />
+          <StarSummary rating="1" v-bind:reviews="product.reviews" />
+          <StarSummary rating="2" v-bind:reviews="product.reviews" />
+          <StarSummary rating="3" v-bind:reviews="product.reviews" />
+          <StarSummary rating="4" v-bind:reviews="product.reviews" />
+          <StarSummary rating="5" v-bind:reviews="product.reviews" />
       </div>
-      <ReviewList />
+      <ReviewList v-bind:reviews="product.reviews"  />
   </div>
+</div>
 </template>
 
 <script>
 import AverageSummary from '@/components/AverageSummary'
 import StarSummary from '@/components/StarSummary'
 import ReviewList from '@/components/ReviewList'
+import ProductsService from '@/services/ProductsService'
 
 export default {
     components: {
@@ -37,18 +47,42 @@ export default {
         StarSummary,
         ReviewList
     },
-    computed: {
-        product() {
-            return this.$store.state.products.find(
-                (p) => {
-                    return p.id == this.$store.state.activeProduct;
-                }
-            )
+    data() {
+        return {
+            product: {},
+            isLoading: true,
+            errorMessage: ''
         }
     },
     created() {
         const activeProductId = this.$route.params.id;
         this.$store.commit('SET_ACTIVE_PRODUCT', activeProductId);
+
+        ProductsService.getProductById(activeProductId)
+            .then( response => {
+                this.product = response.data;
+                this.isLoading = false;
+            })
+            .catch( error => {
+                // If the error object has a response property, then it is either 4xx or 5xx HTTP status code
+                if (error.response) {
+                    if (error.response.status === 404) {
+                        this.$router.push({ name: 'not-found' } );
+                    } else {
+                        this.errorMessage = `${error.response.status}: ${error.response.statusText}`;
+                    }
+                }
+                // If the error object has no resonse, but has a request then the server could not be reached
+                else if (error.request) {
+                    this.errorMessage = "Unable to connect to server";
+                } 
+                // If the error object jas no response and not request something horrible has happened like a coding error
+                else {
+                    this.errorMessage = "Something has gone terribly wrong and we have no idea what!";
+                }
+                this.isLoading = false;
+            });
+        
     }
 }
 </script>

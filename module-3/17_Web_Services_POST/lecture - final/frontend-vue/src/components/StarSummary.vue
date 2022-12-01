@@ -8,7 +8,7 @@
 <script>
 export default {
   name: "star-summary",
-  props: ["rating"],
+  props: ["rating", "reviews"],
   methods: {
     updateFilter() {
       this.$store.commit("UPDATE_FILTER", parseInt(this.rating));
@@ -16,8 +16,7 @@ export default {
   },
   computed: {
     stars() {
-      const reviews = this.$store.getters.product.reviews;
-      return reviews.reduce((currentCount, review) => {
+      return this.reviews.reduce((currentCount, review) => {
         return currentCount + (review.rating === parseInt(this.rating) ? 1 : 0);
       }, 0);
     }
