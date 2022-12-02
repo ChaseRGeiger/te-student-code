@@ -1,10 +1,32 @@
 <template>
-  <h1>Product</h1>
+   <div class="product" v-bind:class="{bestseller: product.is_top_seller}">
+      <h2>{{product.name}}</h2>
+      <router-link v-bind:to="{name: 'product-info', params:{productId: product.id}}">
+         <img v-bind:src="require('../assets/product-images/' + product.image_name)" alt="">
+      </router-link>
+      
+      <div class="rating">
+         <img class="ratingStar" src="../assets/star.png" v-for="n in product.rating" v-bind:key="n" alt="">
+         <img class="ratingStar" src="../assets/star_empty.png" v-for="e in numberOfEmptyStars" v-bind:key="'empty' + e" alt="">
+      </div>
+      <p>{{'$' + Number(product.price)}}</p>
+      <div class="notices">
+         <span v-if="product.is_top_seller" class="topseller">Top Seller</span>
+         <span v-if="product.quantity === 0" class="limitedstock">Sold Out</span>
+         <span v-if="product.quantity > 0 && product.quantity < 7" class="limitedstock">Only {{product.quantity}} left!</span>
+      </div>
+   </div>
 </template>
 
 <script>
 export default {
-    name: 'product-list-item'
+    name: 'product-list-item',
+    props:['product'],
+    computed:{
+       numberOfEmptyStars(){
+          return 5 - Number(this.product.rating)
+       }
+    }
 }
 </script>
 

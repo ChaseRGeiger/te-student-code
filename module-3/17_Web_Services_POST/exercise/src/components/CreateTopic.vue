@@ -24,7 +24,18 @@ export default {
     };
   },
   methods: {
-    saveTopic() {}
+    saveTopic() {
+      topicService.createTopic(this.topic).then(response =>{
+        if (response.status == 201) {
+            this.$router.push( { 
+              name: 'Home', 
+              params: {topic: this.topic}
+            });
+          } else {
+            alert("Unexpected response returned: " + response.status + " : " + response.statusText);
+          }
+      })
+    }
   }
 };
 </script>

@@ -19,7 +19,10 @@ if(currentToken != null) {
 export default new Vuex.Store({
   state: {
     token: currentToken || '',
-    user: currentUser || {}
+    user: currentUser || {},
+    storeName: 'Java Blue Mart',
+    categories: [],
+    category: 'All'
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -37,6 +40,13 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+    SET_CATEGORY(state, category){
+      state.category = category;
+    },
+    SET_CATEGORIES(state, categories){
+      categories.unshift('ALL');
+      state.categories = categories;
     }
   }
 })
